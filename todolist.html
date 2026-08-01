@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>TodoList</title>
+</head>
+<style>
+    body{
+       margin: 0;
+       padding: 0;
+       background-color: #c05300;
+    }
+
+header {
+  background-color: #ffffff;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #c05300;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+    .outer-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       width: 100%;    
+       height: 600px;
+       
+    }
+  
+     .inner-container{
+        background-color: #ffffff;
+        width: 50%;
+        height: 420px;
+         border-radius: 20px;
+         padding: 40px;
+         padding-top: 20px;
+         margin-top: 100px;
+         
+     }
+
+    .container-header{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .input-text{
+       width: 70%;
+       height: 40px;
+       border-radius: 10px;
+       background-color: #66bedd;
+       border: none;
+       text-indent: 10px;
+       font-size: 18px;
+       font-family: Arial, sans-serif;
+       font-weight: bold;
+    }
+
+    .add-btn{
+        width: 20%;
+        height: 40px;
+        border-radius: 10px;
+        background-color: #0080ff;
+        border: none;
+        font-size: 18px;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        
+       transition: 0.2s;
+    }
+
+    .add-btn:active{
+        background-color: #410cd3;
+        color: #ffffff;
+    }
+
+    #task-list{
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        gap : 10px
+    }
+
+
+</style>
+<body>
+<header></header>
+ <div class="outer-container">
+    <div class="inner-container">
+        <div class = "container-header">
+               <img  style = "width: 60px;" src="https://thfvnext.bing.com/th?q=Task+List+Icon&w=120&h=120&c=1&rs=1&qlt=70&r=0&o=7&cb=1&dpr=1.3&pid=InlineBlock&rm=3&mkt=en-PH&cc=PH&setlang=en&adlt=moderate&t=1&mw=247" alt="">
+         <h1 style = "font-family: Arial, sans-serif; ">TO-DO-LIST</h1>
+         
+        </div>
+      
+         <input class="input-text" type="text" id="input" placeholder="Enter your task">
+         <button class="add-btn" id="add">Add</button>
+         <table id="task-list" border="3">
+           <tr>
+            <th>#</th>
+            <th>Task</th>
+           </tr>
+         </table>
+    </div>
+ </div>
+</body>
+<script>
+
+    let tasks = [];
+
+    document.getElementById("add").addEventListener("click", function(){
+        const input = document.getElementById("input").value;// so dito is kinukuha nia yung value ng nasa input field at nilalagay sa variable na input
+        
+        tasks.push(input)  // so dito is cinall ko ung array para i push yung value ng input sa array na tasks
+
+         document.getElementById("input").value = ""; // so dito is nilalagay ko ulit sa input field yung empty string para ma clear yung input field pag nakapag add na ng task
+        tablerender();// so dito is tinatawag ko yung function na tablerender para ma render yung table pag nakapag add na ng task
+    })
+
+
+    function tablerender(){
+        let table = document.getElementById("task-list");// so dito is kinukuha ko yung table element at nilalagay sa variable
+        table.innerHTML = "<tr><th>#</th>    <th>Task</th></tr>"; // so dito is nilalagay ko ulit yung header ng table para ma reset yung table pag nakapag add na ng task
+
+        tasks.forEach((task,index)=>{  // so dito is ginagamit ko yung forEach method para iiterate yung array na tasks at makuha yung bawat task at index ng task sa array
+        const row = document.createElement("tr");// so dito is gumagawa ako ng bagong row element para sa bawat task sa array na tasks
+
+        const indexcell = document.createElement("td");// A ARALIN
+        indexcell.textContent = index + 1;// A ARALIN
+
+        const taskcell = document.createElement("td");
+        taskcell.textContent = task;
+
+         row.appendChild(indexcell); // A ARALIN
+        row.appendChild(taskcell); // A ARALIN   
+
+        table.appendChild(row);
+       });
+
+       
+    }
+
+</script>
+
+</html>

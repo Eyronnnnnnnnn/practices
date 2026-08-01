@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+</head>
+<style>
+    body{
+        margin: 0;  
+        background-color: aqua;
+    }
+
+    .inner-container{
+      background-color: brown;
+      width: 380px;
+      height: 550px;
+      border-radius: 20px;
+    }
+
+    .outer-container{
+        background-color: antiquewhite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+
+    }
+
+    .answer-container{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .answer-input{
+            width: 340px;
+            height: 110px;
+            border-radius: 10px;
+            text-align: right;
+            color: black;
+            font-size: 70px;
+            border: 0;
+    }
+
+    .button-container{
+        display: grid;
+         grid-template-columns: repeat(4,1fr);
+        
+         gap: 6px; 
+         margin-top: 20px;
+        width: 345px;
+        height: 380px;
+        margin-left: 15px;
+        
+    }
+
+    .buttons{
+        width: 70px;
+        height: 70px;
+    }
+ .button-container button:nth-child(17) {
+  grid-column: 2; /* third column */
+  grid-row: 5;    /* parehong row */
+}
+
+.button-container button:nth-child(18) {
+  grid-column: 3; /* rightmost column */
+  grid-row: 5;    /* parehong row */
+}
+
+
+</style>
+<body>
+
+    <div class = "outer-container">
+          <div class = "inner-container">
+            <div class="answer-container">
+               <input class ="answer-input" id="answer-inputs" type="text" placeholder="0">
+            </div> 
+
+       
+
+           <div class = "button-container">
+                 <button class="buttons" onclick="buttonClick(this.value)" value="7">7</button>
+  <button class="buttons" onclick="buttonClick(this.value)" value="8">8</button>
+  <button class="buttons" onclick="buttonClick(this.value)" value="9">9</button>
+  <button class="buttons" onclick="operands()">DEL</button>
+
+  <button class="buttons" onclick="buttonClick(this.value)" value="4">4</button>
+  <button class="buttons" onclick="buttonClick(this.value)" value="5">5</button>
+  <button class="buttons" onclick="buttonClick(this.value)" value="6">6</button>
+  <button class="buttons" onclick="operands(this.value)" value="/">÷</button>
+
+  <button class="buttons" onclick="buttonClick(this.value)" value="1">1</button>
+  <button class="buttons" onclick="buttonClick(this.value)" value="2">2</button>
+  <button class="buttons" onclick="buttonClick(this.value)" value="3">3</button>
+  <button class="buttons" onclick="operands(this.value)" value="-">−</button>
+
+  <button class="buttons" onclick="inputclear()">C</button>
+  <button class="buttons" onclick="buttonClick(this.value)" value="0">0</button>
+  <button class="buttons"></button>
+  <button class="buttons" onclick="operands(this.value)" value="+">+</button>
+
+  <button class="buttons"></button>
+  <button class="buttons" onclick="calculate()">=</button>
+           </div>
+
+          </div>
+    </div>
+
+   
+</body>
+
+<script>
+
+    let num1 = null;
+    let operator = null;
+
+   function buttonClick(value){
+    const input = document.getElementById("answer-inputs");
+    input.value = input.value + value;
+   }
+
+   function inputclear(){
+   const deleteInputs = document.getElementById("answer-inputs");
+     deleteInputs.value = "";
+   }
+
+    function operands(value){
+
+        const input = document.getElementById("answer-inputs");
+        num1 = Number(input.value);
+        operator = value;
+        input.value= "";
+
+    }
+
+    function calculate(){
+         const input = document.getElementById("answer-inputs");
+         num2 = Number(input.value);
+         let result;
+
+         if(operator == "+"){
+            result = num1 + num2;
+         }
+          if(operator == "-"){
+            result = num1 - num2;
+         }
+          if(operator == "/"){
+            result = num1 / num2;
+         }
+          if(operator == "*"){
+            result = num1 * num2;
+         }
+         
+        input.value = result;
+
+    }
+  
+    
+
+</script>
+</html>

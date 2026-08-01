@@ -1,0 +1,105 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <h1>practicess for map</h1>
+    <br />
+    <p class="numbers"></p>
+    <br /><br /><br />
+
+    <h1>practices for filter</h1>
+    <br />
+
+    <p class="numberfilter"></p>
+  </body>
+
+  <script>
+    const number = [1, 2, 3, 4, 5];
+    const display = document.querySelector(".numbers");
+
+    const triplenum = number.map((num) => {
+      return num * 3;
+    });
+
+    display.innerHTML = triplenum.toString();
+
+    const ages = [12, 17, 18, 21, 15, 30, 16];
+    const displayfilter = document.querySelector(".numberfilter");
+
+    const filterOutPut = ages.filter((age) => age >= 18);
+    displayfilter.innerHTML = filterOutPut.toString();
+
+    // object in java script
+
+    const product = [
+      { name: "shirt", price: 250 }, // name is the property with a value of shirt
+      { name: "shoes", price: 1200 },
+      { name: "cap", price: 150 },
+      { name: "jacket", price: 2000 },
+    ];
+
+    console.log(product[0].name);
+    console.log(product[1].price);
+
+    const productfiltered = product.filter((prod) => prod.price >= 200);
+    console.log(productfiltered);
+
+    const displayprods = productfiltered.map((prod) => prod.name);
+    console.log(displayprods);
+
+    const item = [
+      { item: "Pen", stock: "5" },
+      { item: "Notebook", stock: "0" },
+      { item: "Eraser", stock: "3" },
+    ];
+
+    const filtereditems = item.filter((item) => item.stock > 0);
+
+    console.log(filtereditems);
+
+    // destructuring
+
+    const car = { brand: "toyota", model: "vios", year: "2023" };
+
+    const { brand, model, year } = car;
+    console.log(brand);
+    console.log(year);
+
+    const users = [
+      { username: "juan22", age: 25 },
+      { username: "maria_c", age: 19 },
+    ];
+
+    const destructuser = users.map(({ username }) => username);
+    console.log(destructuser);
+
+    const student = {
+      name: "lize",
+      address: {
+        city: "Laoag",
+        province: "ilocos norte",
+      },
+    };
+
+    const {
+      name,
+      address: { city },
+    } = student;
+    console.log(name, city);
+
+    // practice
+
+      const student = {
+        name: "Miguel",
+        grades: {
+          math: 95,
+          science: 88,
+        },
+      };
+
+      const {name , grades: {math,science}} = student ; 
+  </script>
+</html>

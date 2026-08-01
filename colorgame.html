@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Color Guessing Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    header {
+      background: #333;
+      color: #fff;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .color-box {
+      width: 150px;
+      height: 150px;
+      margin: 20px auto;
+      border: 3px solid #333;
+      border-radius: 10px;
+    }
+
+    .options {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      background: #333;
+      color: #fff;
+    }
+
+    .btn:hover {
+      background: #555;
+    }
+
+    #result {
+      margin-top: 25px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    #score {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Color Guessing Game</h1>
+  </header>
+
+  <div class="color-box" id="colorBox"></div>
+
+  <div class="options" id="optionsContainer">
+    
+  </div>
+
+  <div id="result">Pick the correct color!</div>
+  <div id="score">Score: 0</div>
+
+  <button id="playagain">Playagain</button>
+  
+</body>
+<script>
+       let correctColor = randomColors();
+       let colors = [randomColors(),randomColors(),correctColor];
+       let score = 0;
+       let isGameover = false ; 
+
+ 
+    
+    function randomColors(){
+          return "#" + Math.floor(Math.random() * 16777215).toString(16);
+    }
+
+  
+
+    function createBtn(color,correctColor){
+        const newBtn = document.querySelector("#optionsContainer");
+        let btn = document.createElement("button");
+
+        btn.textContent = "Click";
+          btn.addEventListener("click",function(){
+                if (color === correctColor){
+                  document.getElementById("result").innerHTML = "correct";
+                  btn.textContent = "correct";
+                  btn.style.backgroundColor = correctColor;
+                  score++;
+                  const scoreboard = document.getElementById("score");
+                  
+                  scoreboard.innerHTML = score;
+                   
+
+                }else{
+                  document.getElementById("result").innerHTML = "wrong";
+                  btn.textContent = "wrong";
+                }
+          });
+       newBtn.appendChild(btn);
+    }
+
+    function playgame(){
+      correctColor = randomColors();
+       colors = [randomColors(), randomColors(), correctColor];
+       
+      colors.sort(() => Math.random() - 0.5);
+
+      const boxcolor = document.querySelector("#colorBox");
+      boxcolor.style.backgroundColor = correctColor;
+       document.getElementById("optionsContainer").innerHTML = "";
+         colors.forEach(color => {
+           createBtn(color,correctColor,score);
+       });
+
+       document.getElementById("result").textContent = "Pick the correct color!";
+    }
+   
+    
+    function resetgame(){
+      isGameover = false ; 
+      playgame();
+    }
+   
+
+    function endgame(){
+      isGameover = true ; 
+    }
+
+    let gameinterval;
+    function rungamelopp(){
+       gameinterval = setInterval(() =>{
+         if(!isGameover){
+          score++;
+          document.getElementById("score").textContent = "score" + score ;
+         }
+       });
+    }
+
+     document.getElementById("playagain").addEventListener("click",resetgame);
+
+  playgame()
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ArrayMethods</title>
+</head>
+<body>
+
+</body>
+
+<script>
+
+const item = [
+    { category: 'TV', brand: 'samsung', price: 200},
+    { category: 'TV', brand: 'sony',price: 500},
+    { category: 'TV',brand: 'xiaomi',price: 3000},
+    { category: 'laptop',brand: 'asus tuf gamiing', price: 20},
+    { category: 'laptop',brand: 'predator helio 17', price: 44000},
+    { category: 'laptop', brand: 'republic of gamers',price: 120000},
+    { category: 'Cellphone',brand: 'iphone 17pro max', price: 87000},
+    { category: 'Cellphone', brand: 'xiaomi 12 pro',price: 23000},
+    { category: 'Cellphone', brand: 'iphone 12',price: 24000},
+    { category: 'Cellphone',brand: 'iphone15', price: 52990},
+    { category: 'Cellphone',brand: 'iphone14', price: 42777},
+]
+
+//  const filtereditems = item.filter((item) => {
+//     return item.category === 'Cellphone';
+//  })
+
+item.forEach((item) => {
+    if(item.category === 'Cellphone'){
+        console.log(`Brand: ${item.brand}, Price:$ ${item.price}`);
+    }
+})
+
+//  console.log(filtereditems);
+
+</script>
+</html>

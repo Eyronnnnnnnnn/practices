@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Bar UI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .search-container {
+      background: #fff;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 8px 12px;
+      background: #fafafa;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      flex: 1;
+      font-size: 16px;
+      background: transparent;
+    }
+
+    .search-box button {
+      background: #007bff;
+      border: none;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .search-box button:hover {
+      background: #0056b3;
+    }
+
+    .results {
+      margin-top: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+    }
+
+    .results li {
+      list-style: none;
+      padding: 6px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .results li:hover {
+      background: #f0f8ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="search-container">
+    <div class="search-box">
+      <input type="text" id="searchBox" placeholder="Search...">
+      <button id="searchBtn">🔍</button>
+    </div>
+    
+    <ul class="results" id="results">
+      
+    </ul>
+  </div>
+</body>
+
+<script>
+    let games = ["minecraft","Mobile Legends", "League of Legends","Dota"];
+    const display = document.getElementById("results");
+    const input = document.getElementById("searchBox");
+    const resultList = document.getElementById("results");
+    const searchbtn = document.getElementById("searchBtn");
+
+
+  
+    searchbtn.addEventListener("click" , () =>{
+     const value = input.value; // ang value nito is kung ano ang input mo
+     let query = value.toLowerCase();
+ 
+    display.innerHTML = "";
+
+
+     let result = games.filter(elements => elements.toLowerCase().includes(query));
+     
+    if(result.length === 0 || query.length === 0){
+       let nores = document.createElement("li");
+       nores.innerHTML = "No Found"
+       display.appendChild(nores);
+
+    }else{
+      result.forEach(game =>{
+       console.log(game);
+      let li = document.createElement("li");
+      li.innerHTML = result;
+      display.appendChild(li);
+      });
+    }
+
+ 
+
+    });
+
+    
+</script>
+</html>

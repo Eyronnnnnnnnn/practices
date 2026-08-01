@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Aaron Guillermo",
+        "money": 10000 ,
+         "GfName":"shane Boromeo",
+         "rating": 100.00
+
+    },
+
+     {
+        "name": "shaneboromeo",
+        "money": null,
+        "BfName":"aaron guillermo",
+        "rating": 100.00
+     }
+]

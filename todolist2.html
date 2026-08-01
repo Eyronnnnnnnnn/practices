@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Todo List</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: #0080ff;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .outer-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 50px;
+    }
+
+    .inner-container {
+      background-color: #ffffff;
+      width: 60%;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .container-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .input-text {
+      width: 70%;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding-left: 10px;
+      font-size: 16px;
+    }
+
+    .add-btn {
+      width: 25%;
+      height: 40px;
+      border-radius: 8px;
+      border: none;
+      background-color: #0080ff;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .add-btn:hover {
+      background-color: #005bb5;
+    }
+
+    #task-list {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    #task-list th, #task-list td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    #task-list th {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <header>TO-DO LIST</header>
+
+  <div class="outer-container">
+    <div class="inner-container">
+      <div class="container-header">
+        <input class="input-text" type="text" id="input" placeholder="Enter your task">
+        <button class="add-btn" id="add">Add</button>
+      </div>
+
+      <table id="task-list">
+        <tr>
+          <th>#</th>
+          <th>Task</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Script dito mo na ilalagay -->
+  <script>
+
+  let tasks = [];
+
+  document.getElementById("add").addEventListener("click", function(){
+    const tasksinputs = document.getElementById("input").value;
+ 
+     tasks.push(tasksinputs);
+ 
+    document.getElementById("input").value = "";
+   
+    rendertable();
+  });
+
+
+   function rendertable(){
+
+    const table = document.getElementById("task-list");
+    table.innerHTML = "<tr><th>#</th>  <th>Task</th>   </tr>"
+
+   tasks.forEach((tasks,index)=>{
+
+     const tablerow = document.createElement("tr");
+    
+    const indexcell = document.createElement("td");
+    indexcell.textContent = index + 1;
+
+    const taskcell = document.createElement("td");
+    taskcell.textContent = tasks;
+
+    tablerow.appendChild(indexcell);
+    tablerow.appendChild(taskcell);
+
+    table.appendChild(tablerow);
+
+
+   });
+
+   }
+
+
+
+  </script>
+</body>
+</html>

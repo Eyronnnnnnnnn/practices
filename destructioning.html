@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+  <h1 class="Example"></h1>
+
+    
+</body>
+
+
+<script>
+    const person = {
+        name: "John",
+        grade: "A",
+        course: "Math"
+    }
+    const {name,grade,course} = person;
+    document.getElementsByClassName("Example")[0].innerHTML = "My name is "+name+" and I got "+grade+" in "+course;
+    
+
+
+    const books = ["science" , "araling panlipunan", " math" , "P,E" , "ESP" , "TLE"];
+   
+    const [a, b, c, ...others] = books;
+    const major = [a,b,c];
+    const minor = others;
+   
+     
+
+</script>
+</html>

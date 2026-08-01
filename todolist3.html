@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Modern Todo List</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding: 40px;
+    }
+    .todo-container {
+      background: #fff;
+      width: 350px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    h2 {
+      margin: 0 0 20px;
+      text-align: center;
+      color: #333;
+    }
+    .todo-input {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    .todo-input input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+    }
+    .todo-input button {
+      margin-left: 10px;
+      padding: 10px 15px;
+      border: none;
+      background: #0078d7;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      background: #f9fafc;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    li span {
+      flex: 1;
+    }
+    li button {
+      border: none;
+      background: #ff4d4d;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="todo-container">
+    <h2>My Todo List</h2>
+    <div class="todo-input">
+      <input type="text" id="taskInput" placeholder="Add a new task...">
+      <button id="addBtn">Add</button>
+    </div>
+    <ul id="taskList"></ul>
+  </div>
+</body>
+
+<script>
+
+let tasks = ["CocoMelon","spongeBob","Marvels"];
+
+ const addbtn = document.getElementById("addBtn");
+ const taskInput = document.getElementById("taskInput");
+ const taskList = document.getElementById("taskList");
+
+function rendertask (){
+
+  taskList.innerHTML = "";
+  tasks.forEach((task,index) =>{
+
+    const li = document.createElement("li");
+    const span = document.createElement("span");
+    span.textContent = task;
+
+     const delBtn = document.createElement("button");
+    delBtn.textContent = "Delete";
+    delBtn.onclick = () => {
+      tasks.splice(index, 1);
+      rendertask();
+    };
+
+    li.appendChild(span);
+    li.appendChild(delBtn);
+    taskList.appendChild(li);
+
+  });
+
+}
+
+addbtn.addEventListener("click", () => {
+  const newTask = taskInput.value.trim();
+  if (newTask) {
+    tasks.push(newTask);
+    taskInput.value = "";
+    rendertask();
+  }
+});
+
+rendertask();
+</script>
+
+
+</html>

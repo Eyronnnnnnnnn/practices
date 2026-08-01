@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Color Picker UI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      
+    }
+
+    header{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: black;
+      width: 100%;
+      height: 130px;
+      color: #ccc;
+      margin-bottom: 60px;
+      
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .red { background-color: red; }
+    .blue { background-color: blue; }
+    .green { background-color: green; }
+    #output {
+      margin-top: 30px;
+      font-size: 20px;
+      font-weight: bold;
+      border: 2px solid #ccc;
+      padding: 15px;
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #Input-colors{
+      height: 28px;
+      width: 200px;
+      padding-left: 10px;
+      
+    }
+
+    .history-list-container {
+
+    width: 100%;
+    
+
+    }
+ 
+    .history-list{
+      display:flex;
+      justify-content: center;
+      
+      
+    }
+
+    #history-list-table{
+      border: 1px solid rgb(4, 1, 1);
+       width: 300px;
+         border-collapse: collapse;
+         
+    }
+
+
+
+    
+
+
+  </style>
+</head>
+<body>
+  <header>
+   <h1>Color Picker</h1>
+  </header>
+  <h2>Pumili ng Kulay</h2>
+  <div id="buttonContainer">
+    <button class="btn red" id="redbtn">Red</button>
+    <button class="btn blue" id="bluebtn">Blue</button>
+    <button class="btn green" id="greenbtn">Green</button>
+  </div>
+
+  <div id="output">Wala pang napipili</div>
+  
+  <div id="color-input-container">
+    <h2>ENTER Color (hex or etc)</h2>
+    <input type="text" id="Input-colors" placeholder="Enter Color" value=""><br><br>
+    <button id="submitbtn">ENTER</button>
+  </div>
+  <div class="color-show-container" style="display: flex; justify-content: center; align-items: center; height:160px ;">
+     <div class="color-show"  style="border-color: black; width: 100px; height: 100px; background-color: black;">
+     
+  </div>
+  </div>
+
+  <div class="history-list-container">
+
+    <div class="history-list">
+       <table id="history-list-table" border="1">
+        <tr>
+           <th>color picked</th>
+           <th>time</th>
+        </tr>
+       
+        </tr>
+           
+       </table>
+    </div>
+    
+  </div>
+  
+ 
+</body>
+
+<script>
+
+let List =[];
+
+const output = document.getElementById("output");
+const redbotton = document.getElementById("redbtn");
+const bluebotton = document.getElementById("bluebtn");
+const greenbotton = document.getElementById("greenbtn");
+const inputText = document.getElementById("Input-colors");
+const submitBtn = document.getElementById("submitbtn");
+
+
+
+
+submitBtn.addEventListener("click",function(){
+
+//dito kinukuha nia ung input na color sa inputText
+ const value = inputText.value;
+ const colorchange = document.querySelector(".color-show");
+
+ colorchange.style.background = value;
+ console.log(value);
+
+ //dito is pinupush nia sa loob ng array na List ang mailalagay sa input colors
+ List.push(value);
+
+  coloradded(value);
+
+});
+
+
+function coloradded(color){
+  const listTable = document.querySelector("#history-list-table");
+  //error here 
+const newtable = `
+ <tr>
+      <td>${color}</td>
+      <td>${new Date().toLocaleTimeString()}</td>
+    </tr>
+`;
+    listTable.innerHTML += newtable;
+ 
+}
+
+  
+
+redbotton.addEventListener("click",function(){
+     output.innerHTML = "picked red";
+     output.style.background = "red";
+     output.style.color = "white"
+});
+
+bluebotton.addEventListener("click", function(){
+     output.innerHTML = "picked blue";
+     output.style.background = "blue";
+});
+
+greenbotton.addEventListener("click",function(){
+     output.innerHTML = "picked green";
+     output.style.background = "green";
+});
+
+
+</script>
+</html>

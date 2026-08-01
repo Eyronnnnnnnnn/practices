@@ -1,0 +1,104 @@
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+  </head>
+  <body>
+      
+
+      <div class="main-container" style="background-color: aqua; height: 500px; width: 500px; display: flex; align-items: center; justify-content: center; border-radius: 20px;">
+        <div class="outer-container" style="background-color: black; height: 200px; width: 300px; border-radius: 25%;"></div>
+      </div>
+
+      <h1 class="text"></h1>
+      <h1 class="text2"></h1>
+        <h1 class="text3"></h1>
+        <h1 class="text4"></h1>
+          <h1 class="text5"></h1>
+          <h1 class="text6"></h1>
+
+          <h1 class="answer"> result : </h1>
+
+            <button class="btn-example">Click me</button>
+    </body>
+
+    <script>
+   /*  destructuring */
+
+   const foods = ["burger", "pizza", "fries", "hotdog", "soda"];
+ const [food1, food2, food3, food4, food5] = foods;
+
+ console.log(food1);
+ console.log(...res food2);
+  
+
+ /* ...rest with object literal */
+
+ const person ={
+  name: "Aaron",
+  age: 19,
+  course: "BSIT"
+ }
+const {name, ...others} = person;
+
+
+ console.log(person.name);
+
+ 
+ 
+
+
+
+      let isRed = false;
+      document.querySelector(".btn-example").addEventListener("click", () => {
+         const btn = document.querySelector(".btn-example");
+         
+      if (!isRed) {
+      btn.style.backgroundColor = "red";
+      isRed = true;
+    } else {
+      btn.style.backgroundColor = "blue";
+      isRed = false;
+    }
+
+          
+      });
+
+      
+
+
+      function schoolcredentials(name,age,course){
+
+            return{name,age,course};
+      }
+
+      const arrowfucntion = ( a , b)=>{
+        result = a + b;
+       return result;
+      }
+
+      const res = arrowfucntion(90,20);
+      document.getElementsByClassName("answer")[0].innerHTML = `${res}`;
+
+
+
+    const ccis = schoolcredentials("Aaron",19,"BSIT");
+    const ccis1 = schoolcredentials("shane",19,"BSIT");
+    const ccis2 = schoolcredentials("dasd",19,"BSIT");
+    const ccis3 = schoolcredentials("Aafdfron",19,"BSIT");
+    const ccis4 = schoolcredentials("Aargfgon",19,"BSIT");
+
+
+    
+    document.getElementsByClassName("text")[0].innerHTML = `Name: ${ccis.name } , Age: ${ccis.age}, Course: ${ccis.course}`;
+      document.getElementsByClassName("text2")[0].innerHTML = `Name: ${ccis1.name } , Age: ${ccis1.age}, Course: ${ccis1.course}`;
+        document.getElementsByClassName("text3")[0].innerHTML = `Name: ${ccis2.name } , Age: ${ccis2.age}, Course: ${ccis2.course}`;
+          document.getElementsByClassName("text4")[0].innerHTML = `Name: ${ccis3.name } , Age: ${ccis3.age}, Course: ${ccis3.course}`;
+            document.getElementsByClassName("text5")[0].innerHTML = `Name: ${ccis4.name } , Age: ${ccis4.age}, Course: ${ccis4.course}`;
+    
+
+
+
+  </script>
+  </html>

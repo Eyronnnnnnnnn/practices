@@ -1,0 +1,44 @@
+#userinput{
+    width: 300px;
+    height: 35px;
+    background-color: none;
+    border: 1px solid gray; 
+    border-radius: 5px;
+    background-color: transparent;
+     padding-left: 15px;
+     color: white;
+     transition: border-color 0.2s ease-in-out ;
+   
+}
+
+#userinput:focus {
+    border-color: red;
+      outline: none; 
+}
+#userinput:hover {
+  border-color: red;
+}
+
+
+#passwordinput{
+    width: 300px;
+    height: 35px;
+    background-color: none;
+    border: 1px solid gray; 
+    border-radius: 5px;
+    background-color: transparent;
+     padding-left: 15px;
+     color: white;
+     transition: border-color 0.2s ;
+   
+}
+
+#passwordinput:focus {
+    border-color: red;
+     outline: none; 
+}
+
+#passwordinput:hover {
+    border-color: red;
+}
+

@@ -1,0 +1,54 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+  </head>
+  <body>
+    <h1>Contact book</h1>
+    <input type="text" placeholder="enter contact" />
+
+    <input type="text" id="name" placeholder="Name" />
+    <input type="number" id="age" placeholder="Age" />
+    <input type="number" id="contactnum" placeholder="contactnum" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="text" id="city" placeholder="City" />
+
+    <button id="addBtn">Add</button>
+
+    <div class="list-container">
+      <ul class="list">
+        <li></li>
+      </ul>
+    </div>
+  </body>
+  <script>
+
+    const contactList = document.querySelector(".list");
+    const addbtn = document.querySelector("#addBtn");
+
+    const getInputName = document.querySelector("#name");
+    const getInputAge = document.querySelector("#age");
+    const getInputcontact = document.querySelector("#contactnum");
+    const getInputEmail = document.querySelector("#email");
+    const getInputCity = document.querySelector("#city");
+
+    const contact = [
+      { Name: "Aaron Guillermo", age: "09123058587", email: "aaron@gmail.com" , contact: "0912345678" ,city: "banna ilocos" },
+     
+    ];
+
+    const ListDisplay = contact.map((field) => {
+      const li = document.createElement("li");
+      li.textContent = `${field.Name}: ${field.age} ${field.contact} ${field.city} ${field.email}`;
+      contactList.appendChild(li);
+      return li;
+    });
+
+    // add function to the contact card
+
+    function addContact() {
+      
+    }
+  </script>
+</html>

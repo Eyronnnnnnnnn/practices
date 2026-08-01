@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let name = ` [
+    {
+        "name": "Aaron Guillermo",
+        "money": 10000 ,
+         "GfName":"shane Boromeo",
+         "rating": 100.00
+
+    },
+                                                                                                                                                                                                        
+     {
+        "name": "shaneboromeo",
+        "money": null,
+        "BfName":"aaron guillermo",
+        "rating": 100.00
+     }
+]`
+
+// const student = {"name": "Ana", "course": "IT" ,"year": 2 };
+
+// const parse = JSON.stringify(student);
+
+// console.log(parse);
+
+
+const product = '{"name": "Bluetooth Speaker", "price": 899, "inStock": true}';
+const toregularobject = JSON.parse(product);
+
+console.log(toregularobject.name);
+toregularobject.price = 799;
+const tojsonstring =  JSON.stringify(toregularobject);
+console.log(tojsonstring);
+
+
+// try 
+
+const games = [
+    {"Name" : "NBA2K26" , "Price": "10000"},
+     {"Name" : "valorant" , "Price": "6000"},
+      {"Name" : "gta6" , "Price": "12000"},
+
+];
+
+const tojson = JSON.stringify(games);
+console.log(tojson);
+
+</script>
+
+</html>

@@ -1,0 +1,81 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eyron cinema</title>
+    <link rel="stylesheet" href="loginpage.css" />
+    <link rel="stylesheet" href="login-input.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <img
+          src="C:\JavaScript Practices\eyroncinemasystem\imgsource\cinema.png"
+          class="poster"
+        />
+      </div>
+    </header>
+
+    <div class="poster-container">
+      <img
+        class="Mainposter"
+        src="https://prd-contents.smsupermalls.com/data/2026/07/6a5d941f27e131784517663.jpg"
+      />
+      <div class="Login-container">
+        <form class="login-innercontainer" action="">
+          <h2>LOGIN</h2>
+          <input id="userinput" type="username" placeholder="Enter Username" />
+          <input
+            id="passwordinput"
+            type="password"
+            placeholder="Enter Password"
+          />
+          <button id="loginbtn" type="submit">LOGIN</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay">
+      <div id="modal">
+        <span class="check">✔</span>
+        <h2>Login Successful!</h2>
+      </div>
+    </div>
+
+    <footer>
+      <p>All Right Reserve @2026</p>
+    </footer>
+  </body>
+
+  <script>
+    const username = document.querySelector("#userinput");
+    const password = document.querySelector("#passwordinput");
+    const logbtn = document.querySelector(".login-innercontainer");
+
+    function login() {
+      document.getElementById("overlay").style.display = "flex";
+      setTimeout(() => {
+        window.location.href = " maindashboard.html";
+      }, 2000);
+    }
+    logbtn.addEventListener("submit", function (event) {
+      confirmpass = password.value;
+      confirmusername = username.value;
+      defaultpass = "aaron";
+      defaultusername = "aaron123";
+
+      event.preventDefault();
+
+      if (confirmusername !== defaultusername && confirmpass !== defaultpass) {
+        console.log("incorrect username and password");
+      } else if (confirmusername !== defaultusername) {
+        console.log("wrong username");
+      } else if (confirmpass !== defaultpass) {
+        console.log("wrong pass");
+      } else {
+        login();
+      }
+    });
+  </script>
+</html>

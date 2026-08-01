@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Game Library</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f5f6fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        text-align: center;
+        background: #fff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .search-box {
+        display: flex;
+        justify-content: center;
+        width: 300px;
+        margin: 0 auto 20px;
+      }
+
+      #search {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #ccc;
+        border-radius: 25px 0 0 25px;
+        outline: none;
+        font-size: 14px;
+      }
+
+      #search-btn {
+        padding: 10px 20px;
+        border: 1px solid #ccc;
+        border-left: none;
+        border-radius: 0 25px 25px 0;
+        background-color: #4a90e2;
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s;
+      }
+
+      #search-btn:hover {
+        background-color: #357ab8;
+      }
+
+      #game-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      #game-list li {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Game Library</h1>
+      <div class="search-box">
+        <input type="text" id="search" placeholder="Search games..." />
+        <button id="search-btn">Search</button>
+      </div>
+      <ul id="game-list">
+        <!-- <li>Valorant</li>
+      <li>Minecraft</li>
+      <li>Dota 2</li>
+      <li>CS:GO</li> -->
+      </ul>
+    </div>
+
+    <script>
+      const gamelist = [
+        "Valorant",
+        "Mobile Legends",
+        "Dota",
+        "League of Legends",
+      ];
+
+      const input = document.querySelector("#search");
+      const searchbtn = document.querySelector("#search-btn");
+      const list = document.getElementById("game-list");
+
+      searchbtn.addEventListener("click", () => {
+        const value = input.value;
+        const query = value.toLowerCase();
+
+        let gamefiltered = gamelist.filter((game) =>
+          game.toLowerCase().includes(query.toLowerCase()),
+        );
+
+        list.innerHTML = "";
+
+        gamefiltered.forEach((game) => {
+          const li = document.createElement("li");
+          li.textContent = game;
+          list.appendChild(li);
+        });
+      });
+    </script>
+  </body>
+</html>

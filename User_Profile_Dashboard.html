@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<style>
+  body {
+    background-color: #ffffff;
+    margin: 40px;
+    padding: 0;
+  }
+
+  header {
+    background-color: #ffffff;
+    height: 110px;
+    color: #000;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 10px 5px -6px rgba(0, 0, 0, 0.1);
+  }
+
+  .mcgi_logo {
+    height: 60px;
+    padding-left: 120px;
+  }
+
+  .profile-outercontainer {
+    display: flex;
+    justify-content: end; 
+    align-items: center;
+    height: 500px;
+    width: 1450px;
+    color: #d87777;
+  }
+
+  .profile-innercontainer {
+    height: 400px;
+    width: 800px;
+    margin-right: 50px;
+    background-color: #0811b6;
+    border-radius: 0px 20px 20px 0px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .Mcgi-cares-logo {
+    margin-left: 50px;
+  }
+
+  #profile-name {
+    font-size: 24px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .profile-info {
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  footer {
+    background-color: #ffffff;
+    height: 50px;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px -10px 5px -6px rgba(0, 0, 0, 0.1);
+  }
+</style>
+</head>
+
+<body>
+  <header>
+    <img class="mcgi_logo" src="https://mcgi.org/wp-content/uploads/2018/05/mcgi-logo.png" alt="MCGI Logo">
+  </header>
+
+  <div class="profile-outercontainer">
+    <img class="Mcgi-cares-logo" src="https://images.hive.blog/0x0/https://files.peakd.com/file/peakd-hive/emmanuel222/23wXNKwqH3aRTrtene7j6WamfLgd69Kvr12MxKyfDV5YtHvcToZ9wyJ6u2p66di9Pr9gh.jpg" style="height: 400px;" alt="MCGI Cares Logo">
+    
+    <div class="profile-innercontainer">
+      <h1 id="profile-name"></h1>
+      <div class="profile-info" id="profile-info"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 MCGI. All rights reserved.</p>
+  </footer>
+
+<script>
+  const profile_detail = {
+    name: "Aaronguillermo",
+    age: 20,
+    course: "BSIT",
+    school: "MMSU",
+    gmail: "aaronguillermo123456789@gmail.com",
+    contact: "09451234567"
+  };
+
+  // Destructuring
+  const { name, age, course, school, gmail, contact } = profile_detail;
+
+  // Show name in h1
+  document.getElementById("profile-name").textContent = `Hi!!! ${name}`;
+
+  // Show other info in profile-info div
+  document.getElementById("profile-info").innerHTML = `
+    Age: ${age} <br>
+    Course: ${course} <br>
+    School: ${school} <br>
+    Gmail: ${gmail} <br>
+    Contact: ${contact}
+  `;
+</script>
+</body>
+</html>
