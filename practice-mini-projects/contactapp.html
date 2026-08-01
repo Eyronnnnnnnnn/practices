@@ -17,13 +17,10 @@
     <button id="addBtn">Add</button>
 
     <div class="list-container">
-      <ul class="list">
-        <li></li>
-      </ul>
+      <ul class="list"></ul>
     </div>
   </body>
   <script>
-
     const contactList = document.querySelector(".list");
     const addbtn = document.querySelector("#addBtn");
 
@@ -34,8 +31,13 @@
     const getInputCity = document.querySelector("#city");
 
     const contact = [
-      { Name: "Aaron Guillermo", age: "09123058587", email: "aaron@gmail.com" , contact: "0912345678" ,city: "banna ilocos" },
-     
+      {
+        Name: "Aaron Guillermo",
+        age: "21",
+        email: "aaron@gmail.com",
+        contact: "0912345678",
+        city: "banna ilocos",
+      },
     ];
 
     const ListDisplay = contact.map((field) => {
@@ -48,7 +50,22 @@
     // add function to the contact card
 
     function addContact() {
-      
+      const newcontact = {
+        Name: getInputName.value,
+        age: getInputAge.value,
+        email: getInputEmail.value,
+        contact: getInputcontact.value,
+        city: getInputCity.value,
+      };
+
+      contact.push(newcontact);
     }
+
+addbtn.addEventListener("click",()=>{
+  console.log("click");
+  addContact();
+});
+  
+
   </script>
 </html>
