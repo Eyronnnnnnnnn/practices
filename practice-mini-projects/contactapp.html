@@ -6,7 +6,6 @@
   </head>
   <body>
     <h1>Contact book</h1>
-    <input type="text" placeholder="enter contact" />
 
     <input type="text" id="name" placeholder="Name" />
     <input type="number" id="age" placeholder="Age" />
@@ -21,6 +20,9 @@
     </div>
   </body>
   <script>
+    
+    let idnum = 1;
+
     const contactList = document.querySelector(".list");
     const addbtn = document.querySelector("#addBtn");
 
@@ -32,25 +34,31 @@
 
     const contact = [
       {
+        id: "1",
         Name: "Aaron Guillermo",
         age: "21",
         email: "aaron@gmail.com",
-        contact: "0912345678",
+        contacts: "0912345678",
         city: "banna ilocos",
       },
     ];
 
-    const ListDisplay = contact.map((field) => {
-      const li = document.createElement("li");
-      li.textContent = `${field.Name}: ${field.age} ${field.contact} ${field.city} ${field.email}`;
-      contactList.appendChild(li);
-      return li;
-    });
+    function renderContact() {
+      contactList.innerHTML = "";
+      const ListDisplay = contact.map((field) => {
+        const li = document.createElement("li");
+        li.textContent = `${field.Name}: ${field.age} ${field.contacts} ${field.city} ${field.email}`;
+        contactList.appendChild(li);
+        return li;
+      });
+    }
+    renderContact();
 
     // add function to the contact card
 
     function addContact() {
       const newcontact = {
+        id: idnum,
         Name: getInputName.value,
         age: getInputAge.value,
         email: getInputEmail.value,
@@ -59,13 +67,13 @@
       };
 
       contact.push(newcontact);
+      idnum++;
     }
 
-addbtn.addEventListener("click",()=>{
-  console.log("click");
-  addContact();
-});
-  
-
+    addbtn.addEventListener("click", () => {
+      console.log("click");
+      addContact();
+      renderContact();
+    });
   </script>
 </html>
