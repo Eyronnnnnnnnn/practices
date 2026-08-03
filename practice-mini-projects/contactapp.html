@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
     }
-    .popup-modal { 
+    .popup-modal {
       display: none;
       background: rgba(0, 0, 0, 0.2);
       position: fixed;
@@ -32,7 +32,38 @@
       <div class="list-container">
         <ul class="list"></ul>
       </div>
-      <div class="popup-modal"></div>
+
+      <div
+        id="overlay"
+        style="
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 999;
+        "
+      ></div>
+
+      <!-- Modal -->
+      <div
+        id="popup-div"
+        style="
+          display: none;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: #fff;
+          padding: 20px;
+          z-index: 1000;
+        "
+      >
+        <p>Hello Modal!</p>
+        <button onclick="hidemodel()">Close</button>
+      </div>
     </div>
   </body>
 
@@ -50,6 +81,8 @@
     const getInputcontact = document.querySelector("#contactnum");
     const getInputEmail = document.querySelector("#email");
     const getInputCity = document.querySelector("#city");
+
+    //getting the pop up modal
 
     let contact = [
       {
@@ -72,34 +105,34 @@
         let editbtn = document.createElement("button");
         editbtn.textContent = "EDIT";
         li.appendChild(editbtn);
-        editbtn.addEventListener("click" , ()=>{
-         console.log(field.id);
+        editbtn.addEventListener("click", () => {
+          console.log(field.id);
+
+          EditContact();
+          showModal();
         });
 
         let deletebtn = document.createElement("button");
         deletebtn.textContent = "DELETE";
         li.appendChild(deletebtn);
         deletebtn.addEventListener("click", () => {
-          if( window.confirm("do you want to deleted it?")){
-          }else {return};
-         
+          if (window.confirm("do you want to deleted it?")) {
+          } else {
+            return;
+          }
+
           deleteContact(field.id);
           renderContact();
         });
 
-        
-
         contactList.appendChild(li);
 
-       
         return li;
       });
-      
     }
     renderContact();
 
-    // add function to the contact card
-
+    // add function to the contact car
     function addContact() {
       const newcontact = {
         id: idnum,
@@ -111,7 +144,6 @@
       };
 
       contact.push(newcontact);
-      
     }
 
     function editContact() {}
@@ -121,18 +153,33 @@
       console.log("click");
       addContact();
       renderContact();
-   
     });
 
-    function deleteContact(id){
-      const deletedcontact = contact.filter(field => field.id !== id );
-      contact = deletedcontact; 
+    function deleteContact(id) {
+      const deletedcontact = contact.filter((field) => field.id !== id);
+      contact = deletedcontact;
     }
 
-    function EditContact(){
-
+    function EditContact() {
+      console.log("has been clicked");
     }
 
-  
+    function showModal() {
+      const overlay = document.querySelector("#overlay");
+      const modal = document.querySelector("#popup-div");
+      overlay.style.display = "block";
+      modal.style.display = "flex";
+    }
+
+    function hidemodel() {
+
+      
+      const overlay = document.querySelector("#overlay");
+      const modal = document.querySelector("#popup-div");
+      overlay.style.display = "none";
+      modal.style.display = "none";
+
+
+    }
   </script>
 </html>
