@@ -4,40 +4,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact</title>
   </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .popup-modal { 
+      display: none;
+      background: rgba(0, 0, 0, 0.2);
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
   <body>
-    <h1>Contact book</h1>
+    <div class="main-body">
+      <h1>Contact book</h1>
 
-    <input type="text" id="name" placeholder="Name" />
-    <input type="number" id="age" placeholder="Age" />
-    <input type="number" id="contactnum" placeholder="contactnum" />
-    <input type="email" id="email" placeholder="Email" />
-    <input type="text" id="city" placeholder="City" />
+      <input type="text" id="name" placeholder="Name" />
+      <input type="number" id="age" placeholder="Age" />
+      <input type="number" id="contactnum" placeholder="contactnum" />
+      <input type="email" id="email" placeholder="Email" />
+      <input type="text" id="city" placeholder="City" />
 
-    <button id="addBtn">Add</button>
+      <button id="addBtn">Add</button>
 
-    <div class="list-container">
-      <ul class="list"></ul>
+      <div class="list-container">
+        <ul class="list"></ul>
+      </div>
+      <div class="popup-modal"></div>
     </div>
   </body>
+
   <script>
-    
     let idnum = 1;
 
     const contactList = document.querySelector(".list");
+
+    //buttons
     const addbtn = document.querySelector("#addBtn");
 
+    //inputs
     const getInputName = document.querySelector("#name");
     const getInputAge = document.querySelector("#age");
     const getInputcontact = document.querySelector("#contactnum");
     const getInputEmail = document.querySelector("#email");
     const getInputCity = document.querySelector("#city");
 
-    const contact = [
+    let contact = [
       {
-        id: "1",
+        id: idnum,
         Name: "Aaron Guillermo",
         age: "21",
-        email: "aaron@gmail.com",
+        email: "example@gmail.com",
         contacts: "0912345678",
         city: "banna ilocos",
       },
@@ -47,10 +66,35 @@
       contactList.innerHTML = "";
       const ListDisplay = contact.map((field) => {
         const li = document.createElement("li");
-        li.textContent = `${field.Name}: ${field.age} ${field.contacts} ${field.city} ${field.email}`;
+
+        li.textContent = `${field.id} ${field.Name}: ${field.age} ${field.contacts} ${field.city} ${field.email}`;
+
+        let editbtn = document.createElement("button");
+        editbtn.textContent = "EDIT";
+        li.appendChild(editbtn);
+        editbtn.addEventListener("click" , ()=>{
+         console.log(field.id);
+        });
+
+        let deletebtn = document.createElement("button");
+        deletebtn.textContent = "DELETE";
+        li.appendChild(deletebtn);
+        deletebtn.addEventListener("click", () => {
+          if( window.confirm("do you want to deleted it?")){
+          }else {return};
+         
+          deleteContact(field.id);
+          renderContact();
+        });
+
+        
+
         contactList.appendChild(li);
+
+       
         return li;
       });
+      
     }
     renderContact();
 
@@ -62,18 +106,33 @@
         Name: getInputName.value,
         age: getInputAge.value,
         email: getInputEmail.value,
-        contact: getInputcontact.value,
+        contacts: getInputcontact.value,
         city: getInputCity.value,
       };
 
       contact.push(newcontact);
-      idnum++;
+      
     }
 
+    function editContact() {}
+
     addbtn.addEventListener("click", () => {
+      idnum++;
       console.log("click");
       addContact();
       renderContact();
+   
     });
+
+    function deleteContact(id){
+      const deletedcontact = contact.filter(field => field.id !== id );
+      contact = deletedcontact; 
+    }
+
+    function EditContact(){
+
+    }
+
+  
   </script>
 </html>
