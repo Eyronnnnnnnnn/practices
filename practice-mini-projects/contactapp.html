@@ -164,7 +164,6 @@
           font-size: 14px;
           padding: 12px;
         }
-      
       }
     </style>
   </head>
@@ -190,21 +189,25 @@
       <!-- Modal -->
       <div id="popup-div">
         <h3>Edit Contact</h3>
-       
-        <input type="text" id="name" placeholder="Name" />
-        <input type="number" placeholder="Age" />
-        <input type="number" placeholder="Contact Number" />
-        <input type="email" placeholder="Email" />
-        <input type="text" placeholder="City" />
+
+        <input type="text" id="modalname-input" placeholder="Name" />
+        <input type="number" id="modalAge-input" placeholder="Age" />
+        <input
+          type="number"
+          id="modalNumber-input"
+          placeholder="Contact Number"
+        />
+        <input type="email" id="modalEmail-input" placeholder="Email" />
+        <input type="text" id="modalCity-input" placeholder="City" />
         <button class="modal-btn" onclick="hidemodel()">CLOSE</button>
-        <button class="modal-btn" onclick="EditContact(id)">SAVE EDIT</button>
+        <button class="modal-btn" id="save-edit" >SAVE EDIT</button>
       </div>
     </div>
   </body>
 
   <script>
     let idnum = 1;
-
+    let editId = null;
     const contactList = document.querySelector(".list");
 
     //buttons
@@ -217,6 +220,12 @@
     const getInputEmail = document.querySelector("#email");
     const getInputCity = document.querySelector("#city");
 
+    const getmodalinputName = document.querySelector("#modalname-input");
+    const getmodalinputAge = document.querySelector("#modalAge-input");
+    const getmodalinputNumber = document.querySelector("#modalNumber-input");
+    const getmodalinputEmail = document.querySelector("#modalEmail-input");
+    const getmodalinputCity = document.querySelector("#modalCity-input");
+    
     //getting the pop up modal
 
     let contact = [
@@ -236,17 +245,22 @@
         const li = document.createElement("li");
 
         li.textContent = `${field.id} ${field.Name}: ${field.age} ${field.contacts} ${field.city} ${field.email}`;
-        li.style.backgroundColor 
-       
+        li.style.backgroundColor;
+
         let editbtn = document.createElement("button");
         editbtn.textContent = "EDIT";
-         
+
         li.appendChild(editbtn);
         editbtn.addEventListener("click", () => {
           console.log(field.id);
-          
-          EditContact(field.id);
+
+         const saveBtn = document.querySelector("#save-edit");
+saveBtn.addEventListener("click", () => {
+   ModalEditen(editId);
+});
           showModal();
+
+
         });
 
         let deletebtn = document.createElement("button");
@@ -283,8 +297,6 @@
       contact.push(newcontact);
     }
 
-  
-
     addbtn.addEventListener("click", () => {
       idnum++;
       console.log("click");
@@ -298,8 +310,20 @@
     }
 
     function EditContact(id) {
-      const editedcontact = contact.find((field) => field.id === id);
-      console.log(editedcontact.Name);
+      let editedcontact = contact.find((field) => field.id === id);
+      return editedcontact;
+    }
+
+    function ModalEditen(id) {
+      const edited = EditContact(id);
+      getmodalinputName.value = edited.Name;
+      getmodalinputAge.value = edited.age;
+      getmodalinputEmail.value = edited.email;
+      getmodalinputNumber.value = edited.contacts;
+      getmodalinputCity.value = edited.city;
+      editId = edited.id; 
+      
+    
     }
 
     function showModal() {
