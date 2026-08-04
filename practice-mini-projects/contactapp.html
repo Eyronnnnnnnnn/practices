@@ -2,67 +2,202 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact</title>
+    <title>Contact Book</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+      }
+
+      .main-body {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      input {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+      }
+
+      button {
+        padding: 12px 18px;
+        margin: 5px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 15px;
+      }
+
+      #addBtn {
+        background: #007bff;
+        color: #fff;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .list-container {
+        margin-top: 20px;
+      }
+
+      .list li {
+        background: #f9f9f9;
+        margin: 8px 0;
+        padding: 12px;
+        border-radius: 6px;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        font-size: 15px;
+        flex-wrap: wrap;
+      }
+
+      .list button {
+        margin-left: 8px;
+      }
+
+      /* Overlay */
+      #overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+
+      /* Modal */
+      #popup-div {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        width: 90%;
+        max-width: 400px;
+        animation: fadeIn 0.3s ease;
+      }
+
+      #popup-div h3 {
+        margin-top: 0;
+        text-align: center;
+        color: #333;
+        margin-bottom: 15px;
+      }
+
+      #popup-div input {
+        width: 100%;
+        margin: 10px 0;
+        padding: 14px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+      }
+
+      #popup-div button {
+        width: 100%;
+        margin-top: 10px;
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 16px;
+      }
+
+      .modal-btn {
+        background: #007bff;
+        color: #fff;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -45%);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      /* Responsive tweaks */
+      @media (max-width: 480px) {
+        .main-body {
+          margin: 20px;
+          padding: 15px;
+        }
+
+        input,
+        button {
+          font-size: 14px;
+          padding: 90px;
+        }
+
+        #popup-div {
+          width: 95%;
+          padding: 20px;
+        }
+
+        #popup-div input,
+        #popup-div button {
+          font-size: 14px;
+          padding: 12px;
+        }
+      
+      }
+    </style>
   </head>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-    .popup-modal {
-      display: none;
-      background: rgba(0, 0, 0, 0.2);
-      position: fixed;
-      width: 100%;
-      height: 100%;
-    }
-  </style>
   <body>
     <div class="main-body">
-      <h1>Contact book</h1>
+      <h1>Contact Book</h1>
 
       <input type="text" id="name" placeholder="Name" />
       <input type="number" id="age" placeholder="Age" />
-      <input type="number" id="contactnum" placeholder="contactnum" />
+      <input type="number" id="contactnum" placeholder="Contact Number" />
       <input type="email" id="email" placeholder="Email" />
       <input type="text" id="city" placeholder="City" />
 
-      <button id="addBtn">Add</button>
+      <button id="addBtn">Add Contact</button>
 
       <div class="list-container">
         <ul class="list"></ul>
       </div>
 
-      <div
-        id="overlay"
-        style="
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.5);
-          z-index: 999;
-        "
-      ></div>
+      <!-- Overlay -->
+      <div id="overlay"></div>
 
       <!-- Modal -->
-      <div
-        id="popup-div"
-        style="
-          display: none;
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background: #fff;
-          padding: 20px;
-          z-index: 1000;
-        "
-      >
-        <p>Hello Modal!</p>
-        <button onclick="hidemodel()">Close</button>
+      <div id="popup-div">
+        <h3>Edit Contact</h3>
+       
+        <input type="text" id="name" placeholder="Name" />
+        <input type="number" placeholder="Age" />
+        <input type="number" placeholder="Contact Number" />
+        <input type="email" placeholder="Email" />
+        <input type="text" placeholder="City" />
+        <button class="modal-btn" onclick="hidemodel()">CLOSE</button>
+        <button class="modal-btn" onclick="EditContact(id)">SAVE EDIT</button>
       </div>
     </div>
   </body>
@@ -101,14 +236,16 @@
         const li = document.createElement("li");
 
         li.textContent = `${field.id} ${field.Name}: ${field.age} ${field.contacts} ${field.city} ${field.email}`;
-
+        li.style.backgroundColor 
+       
         let editbtn = document.createElement("button");
         editbtn.textContent = "EDIT";
+         
         li.appendChild(editbtn);
         editbtn.addEventListener("click", () => {
           console.log(field.id);
-
-          EditContact();
+          
+          EditContact(field.id);
           showModal();
         });
 
@@ -146,7 +283,7 @@
       contact.push(newcontact);
     }
 
-    function editContact() {}
+  
 
     addbtn.addEventListener("click", () => {
       idnum++;
@@ -160,8 +297,9 @@
       contact = deletedcontact;
     }
 
-    function EditContact() {
-      console.log("has been clicked");
+    function EditContact(id) {
+      const editedcontact = contact.find((field) => field.id === id);
+      console.log(editedcontact.Name);
     }
 
     function showModal() {
@@ -169,17 +307,14 @@
       const modal = document.querySelector("#popup-div");
       overlay.style.display = "block";
       modal.style.display = "flex";
+      modal.style.flexDirection = "column";
     }
 
     function hidemodel() {
-
-      
       const overlay = document.querySelector("#overlay");
       const modal = document.querySelector("#popup-div");
       overlay.style.display = "none";
       modal.style.display = "none";
-
-
     }
   </script>
 </html>
