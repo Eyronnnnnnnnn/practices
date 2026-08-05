@@ -116,14 +116,30 @@
         });
       });
 
-      // practice  
+      // practice
 
-const contact = { name: "Rico", city: "Dagupan" };
+      function viewTask(id) {
+        const findtasks = tasks.find((field) => field.id === id);
+        taskTitleInput.value = findtasks.title;
+        let status;
+        if (findtasks.done) {
+          status = "Done";
+        } else {
+          status = "Pending";
+        }
+        taskStatusDisplay.value = status;
+      }
 
-const newcity = "city";
+        function doneTask(id) {
+          const finddonetask = tasks.find((field) => field.id === id);
+          finddonetask.done = true;
+          viewTask(id);
+        }
 
- contact[newcity] = "laoag";
- 
+      const getstyle = getSettings();
+
+      console.log(getstyle.theme);
+      console.log(getsyle.fontSize);
     </script>
   </body>
 </html>

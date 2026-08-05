@@ -200,7 +200,7 @@
         <input type="email" id="modalEmail-input" placeholder="Email" />
         <input type="text" id="modalCity-input" placeholder="City" />
         <button class="modal-btn" onclick="hidemodel()">CLOSE</button>
-        <button class="modal-btn" id="save-edit" >SAVE EDIT</button>
+        <button class="modal-btn" id="save-edit">SAVE EDIT</button>
       </div>
     </div>
   </body>
@@ -225,7 +225,7 @@
     const getmodalinputNumber = document.querySelector("#modalNumber-input");
     const getmodalinputEmail = document.querySelector("#modalEmail-input");
     const getmodalinputCity = document.querySelector("#modalCity-input");
-    
+
     //getting the pop up modal
 
     let contact = [
@@ -244,7 +244,7 @@
       const ListDisplay = contact.map((field) => {
         const li = document.createElement("li");
 
-        li.textContent = `${field.id} ${field.Name}: ${field.age} ${field.contacts} ${field.city} ${field.email}`;
+        li.textContent = `${field.Name}: ${field.age} ${field.contacts} ${field.city} ${field.email}`;
         li.style.backgroundColor;
 
         let editbtn = document.createElement("button");
@@ -253,15 +253,11 @@
         li.appendChild(editbtn);
         editbtn.addEventListener("click", () => {
           console.log(field.id);
-
-         const saveBtn = document.querySelector("#save-edit");
-saveBtn.addEventListener("click", () => {
-   ModalEditen(editId);
-});
+          ModalEditen(field.id);
           showModal();
-
-
         });
+
+     
 
         let deletebtn = document.createElement("button");
         deletebtn.textContent = "DELETE";
@@ -282,6 +278,11 @@ saveBtn.addEventListener("click", () => {
       });
     }
     renderContact();
+
+       const saveBtn = document.querySelector("#save-edit");
+        saveBtn.addEventListener("click", () => {
+          SaveEdit();
+        });
 
     // add function to the contact car
     function addContact() {
@@ -321,9 +322,18 @@ saveBtn.addEventListener("click", () => {
       getmodalinputEmail.value = edited.email;
       getmodalinputNumber.value = edited.contacts;
       getmodalinputCity.value = edited.city;
-      editId = edited.id; 
-      
-    
+      editId = edited.id;
+    }
+
+    function SaveEdit(){
+       const edited = EditContact(editId);
+       edited.Name = getmodalinputName.value;
+       edited.age = getmodalinputAge.value;
+       edited.city = getmodalinputCity.value;
+       edited.contacts = getmodalinputNumber.value;
+       edited.email = getmodalinputEmail.value; 
+       hidemodel();
+       renderContact();
     }
 
     function showModal() {
