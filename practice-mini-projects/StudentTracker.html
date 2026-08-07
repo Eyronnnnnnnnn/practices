@@ -1,178 +1,219 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Tracking</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body {
-      background-color: #20740a; /* Dark green background */
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #fff;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Tracking</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        background-color: #20740a; /* Dark green background */
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #fff;
+      }
 
-    .container {
-      max-width: 900px;
-      margin: 50px auto;
-      background-color: #f1f1f1;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      color: #333;
-    }
+      .container {
+        max-width: 900px;
+        margin: 50px auto;
+        background-color: #f1f1f1;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        color: #333;
+      }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 25px;
-      color: #20740a;
-      font-size: 2rem;
-    }
+      h1 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #20740a;
+        font-size: 2rem;
+      }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      overflow: hidden;
-      border-radius: 8px;
-    }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 8px;
+      }
 
-    th, td {
-      padding: 14px;
-      text-align: center;
-    }
+      th,
+      td {
+        padding: 14px;
+        text-align: center;
+      }
 
-    th {
-      background: #20740a;
-      color: #fff;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
+      th {
+        background: #20740a;
+        color: #fff;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
 
-    tr {
-      background: #eafbea;
-      transition: background 0.3s ease;
-    }
+      tr {
+        background: #eafbea;
+        transition: background 0.3s ease;
+      }
 
-    tr:nth-child(even) {
-      background: #d6f5d6;
-    }
+      tr:nth-child(even) {
+        background: #d6f5d6;
+      }
 
-    tr:hover {
-      background: #c8e6c9;
-    }
+      tr:hover {
+        background: #c8e6c9;
+      }
 
-    .btn {
-      padding: 8px 14px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
+      .btn {
+        padding: 8px 14px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
 
-    .btn-edit {
-      background-color: #146603;
-      color: #fff;
-    }
+      .btn-edit {
+        background-color: #146603;
+        color: #fff;
+      }
 
-    .btn-edit:hover {
-      background-color: #8ce070;
-    }
+      .btn-edit:hover {
+        background-color: #8ce070;
+      }
 
-    .btn-delete {
-      background-color: #d3a009;
-      color: #fff;
-      margin-left: 8px;
-    }
+      .btn-delete {
+        background-color: #d3a009;
+        color: #fff;
+        margin-left: 8px;
+      }
 
-    .btn-delete:hover {
-      background-color: #c0392b;
-    }
+      .btn-delete:hover {
+        background-color: #c0392b;
+      }
 
-    #myChart{
+      #myChart {
         max-width: 900px;
         max-height: 300px;
-      
-    }
-
-     #myChart label{
-          background-color:rgb(23, 163, 23);
-     }
-
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Student Tracking</h1>
-    <canvas id="myChart"></canvas>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Status</th>
-          <th>course</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>213132</td>
-          <td>Juan Dela Cruz</td>
-          <td>Present</td>
-          <td>BSIT</td>
-          <td>
-            <button class="btn btn-edit">Edit</button>
-            <button class="btn btn-delete">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td>213133</td>
-          <td>Maria Santos</td>
-          <td>Absent</td>
-          <TD>Nursing</TD>
-          <td>
-            <button class="btn btn-edit">Edit</button>
-            <button class="btn btn-delete">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
-</body>
-
-
-<script>
-  const ctx = document.getElementById('myChart');
-
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['BSIT', 'BSCS', 'BSIS', 'BSNursing', 'BSCivilEng', 'Orange'],
-      datasets: [{
-        label: 'courses',
-        data: [35, 67, 3, 5, 2, 2],
-        borderWidth: 2,
-        backgroundColor : "orange",
-        borderRadius : 6 , 
-        
-        
-      }]
-      
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
       }
+
+      #myChart label {
+        background-color: rgb(23, 163, 23);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="sample"></h1>
+      <h1>Student Tracking</h1>
+      <canvas id="myChart"></canvas>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>course</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="table-Body">
+          <tr>
+            <td>24-140104</td>
+            <td>Aaron Guillermo</td>
+            <td>Present</td>
+            <td>BSIT</td>
+            <td>
+              <button class="btn btn-edit">Edit</button>
+              <button class="btn btn-delete">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>24-123456</td>
+            <td>Shane Boromeo</td>
+            <td>Present</td>
+            <td>BSNursing</td>
+            <td>
+              <button class="btn btn-edit">Edit</button>
+              <button class="btn btn-delete">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+
+  <script>
+    const ctx = document.getElementById("myChart");
+    const sample = document.querySelector(".sample");
+
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["BSIT", "BSCS", "BSIS", "BSNursing", "BSCivilEng", "Orange"],
+        datasets: [
+          {
+            label: "courses",
+            data: [35, 67, 3, 5, 2, 2],
+            borderWidth: 2,
+            backgroundColor: "orange",
+            borderRadius: 6,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+
+    const getTableBody = document.querySelector("#table-Body");
+
+    const students = [
+      {
+        Id: "24-140104",
+        Name: "Aaron Guillemrmo",
+        Status: "Present",
+        Course: "BSIT",
+      },
+      {
+        Id: "24-123456",
+        Name: "Shane Boromeo",
+        Status: "Present",
+        Course: "BSNursing",
+      },
+    ];
+
+    function RenderStudents() {
+      getTableBody.innerHTML = "";
+
+      const row = students.map((student) => {
+        return `<tr>
+                  <td>${student.Id}</td>
+                  <td>${student.Name}</td>
+                  <td>${student.Status}</td>
+                  <td>${student.Course}</td>
+                  <td><button class="btn btn-edit">Edit</button>
+                      <button class="btn btn-delete">Delete</button></>
+                    </td>
+                
+               </tr>`;
+      });
+
+      getTableBody.innerHTML = row.join("");
+     
+      console.log(row);
+     
     }
-  });
 
 
-</script>
+    function EditStudents(){
+      
+    }
  
+    RenderStudents();
+  </script>
 </html>
