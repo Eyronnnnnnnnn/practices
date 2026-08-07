@@ -17,18 +17,22 @@
       .container {
         max-width: 900px;
         margin: 50px auto;
-        background-color: #f1f1f1;
+          background:   rgba(255, 252, 252, 0.718);
+            backdrop-filter: blur(10px);       /* blur effect sa likod */
+  -webkit-backdrop-filter: blur(40px); /
         padding: 30px;
         border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+         border: 1px solid rgba(255, 255, 255, 0.2); /* frosted border */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         color: #333;
       }
 
       h1 {
         text-align: center;
         margin-bottom: 25px;
-        color: #20740a;
+        color: #224d06;
         font-size: 2rem;
+        font-family: 'Times New Roman', Times, serif;
       }
 
       table {
@@ -100,12 +104,57 @@
       #myChart label {
         background-color: rgb(23, 163, 23);
       }
+
+      .editmodal {
+        display: flex; /* nakatago by default */
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 115, 35, 0.497); /* semi-transparent */
+        backdrop-filter: blur(4px); /* blur effect */
+        -webkit-backdrop-filter: blur(10px); /* Safari support */
+        border: 1px solid rgba(255, 255, 255, 0.3); /* frosted border */
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* depth shadow */
+          opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+      }
+
+      .modalContent {
+        background: rgb(230, 234, 230);
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 8px;
+        width: 700px;
+        height: 400px;
+        text-align: center;
+
+        transform: scale(0.7);
+        transition: transform 0.1s ease;
+
+      }
+      .editmodal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.editmodal.active .modalContent {
+  transform: scale(1); /* zoom in pop-up */
+}
+
     </style>
   </head>
   <body>
     <div class="container">
       <h1 class="sample"></h1>
-      <h1>Student Tracking</h1>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/1Seal.png" style="width: 200px; padding-left: 350px;" >
+      <h1>MMSU STUDENT TRACKING</h1>
+      
       <canvas id="myChart"></canvas>
       <table>
         <thead>
@@ -124,8 +173,8 @@
             <td>Present</td>
             <td>BSIT</td>
             <td>
-              <button class="btn btn-edit">Edit</button>
-              <button class="btn btn-delete">Delete</button>
+              <button class="btn btn-edit" id="btnedit">Edit</button>
+              <button class="btn btn-delete" id="btndelete">Delete</button>
             </td>
           </tr>
           <tr>
@@ -134,18 +183,34 @@
             <td>Present</td>
             <td>BSNursing</td>
             <td>
-              <button class="btn btn-edit">Edit</button>
-              <button class="btn btn-delete">Delete</button>
+              <button class="btn btn-edit" id="btnedit">Edit</button>
+              <button class="btn btn-delete" id="btndelete">Delete</button>
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="editmodal">
+      <div class="modalContent"></div>
     </div>
   </body>
 
   <script>
     const ctx = document.getElementById("myChart");
     const sample = document.querySelector(".sample");
+    const newId = 0;
+
+    const overlay = document.querySelector(".editmodal");
+    const modal = document.querySelector(".modalContent");
+    
+
+    let studentCourseCountBSIT = 32;
+    let studentCourseCountBSCS = 60;
+    let studentCourseCountBSIS = 79;
+    let studentCourseCountBSNursing = 76;
+    let studentCourseCountBSCivilEngr = 56;
+    let studentCourseCountBSoRANGE = 68;
 
     new Chart(ctx, {
       type: "bar",
@@ -154,7 +219,14 @@
         datasets: [
           {
             label: "courses",
-            data: [35, 67, 3, 5, 2, 2],
+            data: [
+              studentCourseCountBSIT,
+              studentCourseCountBSCS,
+              studentCourseCountBSIS,
+              studentCourseCountBSNursing,
+              studentCourseCountBSCivilEngr,
+              studentCourseCountBSoRANGE,
+            ],
             borderWidth: 2,
             backgroundColor: "orange",
             borderRadius: 6,
@@ -174,13 +246,15 @@
 
     const students = [
       {
-        Id: "24-140104",
+        id: 1,
+        studentId: "24-140104",
         Name: "Aaron Guillemrmo",
         Status: "Present",
         Course: "BSIT",
       },
       {
-        Id: "24-123456",
+        id: 2,
+        studentId: "24-123456",
         Name: "Shane Boromeo",
         Status: "Present",
         Course: "BSNursing",
@@ -192,28 +266,54 @@
 
       const row = students.map((student) => {
         return `<tr>
-                  <td>${student.Id}</td>
+                  <td>${student.studentId}</td>
                   <td>${student.Name}</td>
                   <td>${student.Status}</td>
                   <td>${student.Course}</td>
-                  <td><button class="btn btn-edit">Edit</button>
-                      <button class="btn btn-delete">Delete</button></>
+                  <td><button class="btn btn-edit" id ="btnedit-${student.id}">Edit</button>
+                      <button class="btn btn-delete">Delete</button>
                     </td>
                 
                </tr>`;
       });
 
       getTableBody.innerHTML = row.join("");
-     
+
       console.log(row);
-     
+
+      // dito is every student every student my event listener na nag a alert
+      students.map((stud) => {
+        let editbtn = document.querySelector(`#btnedit-${stud.id}`);
+        editbtn.addEventListener("click", () => {
+          overlay.classList.add("active");
+          showModal();
+        });
+      });
     }
 
-
-    function EditStudents(){
+    function showModal() {
       
+      overlay.style.display = "flex";
+      modal.style.display = "flex";
+      modal.style.flexDirection = "column";
+
     }
- 
+    // function for student add
+    function studentAdd() {
+      const newStudent = {
+        id: 1,
+        studentId: "24-140104",
+        Name: "Aaron Guillemrmo",
+        Status: "Present",
+        Course: "BSIT",
+      };
+    }
+
+    function EditStudents(id) {
+      let editedStudent = students.find((f) => f.id);
+      return editedStudent;
+    }
+    
     RenderStudents();
   </script>
 </html>
