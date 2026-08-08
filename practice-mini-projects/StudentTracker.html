@@ -5,154 +5,284 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Tracking</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
-      body {
-        background-color: #20740a; /* Dark green background */
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
-        color: #fff;
+            body {
+              background-color: #20740a; /* Dark green background */
+              font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+              margin: 0;
+              padding: 0;
+              color: #fff;
+            }
+
+            .container {
+              max-width: 900px;
+              margin: 50px auto;
+                background:   rgba(255, 252, 252, 0.718);
+                  backdrop-filter: blur(10px);       /* blur effect sa likod */
+        -webkit-backdrop-filter: blur(40px); 
+              padding: 30px;
+              border-radius: 12px;
+               border: 1px solid rgba(255, 255, 255, 0.2); /* frosted border */
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+              color: #333;
+            }
+
+            h1 {
+              text-align: center;
+              margin-bottom: 25px;
+              color: #224d06;
+              font-size: 2rem;
+              font-family: 'Times New Roman', Times, serif;
+            }
+
+            table {
+              width: 100%;
+              border-collapse: collapse;
+              overflow: hidden;
+              border-radius: 8px;
+            }
+
+            th,
+            td {
+              padding: 14px;
+              text-align: center;
+            }
+
+            th {
+
+             background: #20740a;
+              color: #fff;
+              font-weight: 600;
+              text-transform: uppercase;
+            }
+
+            tr {
+              background: #eafbea;
+              transition: background 0.3s ease;
+            }
+
+            tr:nth-child(even) {
+              background: #d6f5d6;
+            }
+
+            tr:hover {
+              background: #c8e6c9;
+            }
+
+            .btn {
+              padding: 8px 14px;
+              border: none;
+              border-radius: 6px;
+              cursor: pointer;
+              font-size: 0.9rem;
+              transition: all 0.3s ease;
+            }
+
+            .btn-edit {
+              background-color: #146603;
+              color: #fff;
+            }
+
+            .btn-edit:hover {
+              background-color: #8ce070;
+            }
+
+            .btn-delete {
+              background-color: #d3a009;
+              color: #fff;
+              margin-left: 8px;
+            }
+
+            .btn-delete:hover {
+              background-color: #c0392b;
+            }
+
+
+           .addbtn{
+            width: 30px;
+            height: 30px;
+            border-radius: 10px;
+            margin: 0;
+            border: none;
+            background-color: #f0b60a;
+            font-size:26px ;
+            color: #146603;
+
+
+            transition: background 0.7 ease transform 0.8 ease;
+
+           }
+
+           .addbtn:hover {
+              background-color: #065b10;
+              color: #d3a009;
+              transform: scale(1.07);
+           }
+
+
+            #myChart {
+              max-width: 900px;
+              max-height: 300px;
+            }
+
+            #myChart label {
+              background-color: rgb(23, 163, 23);
+            }
+
+             /* overlay  */
+            .editmodal {
+              display: flex; /* nakatago by default */
+              position: fixed;
+              justify-content: center;
+              align-items: center;
+              z-index: 1000;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(10, 115, 35, 0.497); /* semi-transparent */
+              backdrop-filter: blur(4px); /* blur effect */
+              -webkit-backdrop-filter: blur(10px); /* Safari support */
+              border: 1px solid rgba(255, 255, 255, 0.3); /* frosted border */
+              box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* depth shadow */
+                opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+            }
+
+            .modalContent {
+              background:   rgb(255, 255, 255);
+                backdrop-filter: blur(100px); /* blur effect */
+                  -webkit-backdrop-filter: blur(400);
+                   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+              margin: 20% auto;
+              padding: 20px;
+              border-radius: 25px;
+              width: 400px;
+              height: 600px;
+              text-align: center;
+              transform: scale(0.7);
+              transition: transform 0.1s ease;
+
+            }
+            .editmodal.active {
+        opacity: 1;
+        pointer-events: auto;
       }
 
-      .container {
-        max-width: 900px;
-        margin: 50px auto;
-          background:   rgba(255, 252, 252, 0.718);
-            backdrop-filter: blur(10px);       /* blur effect sa likod */
-  -webkit-backdrop-filter: blur(40px); /
-        padding: 30px;
-        border-radius: 12px;
-         border: 1px solid rgba(255, 255, 255, 0.2); /* frosted border */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        color: #333;
+      .editmodal.active .modalContent {
+        transform: scale(1); /* zoom in pop-up */
       }
 
-      h1 {
-        text-align: center;
-        margin-bottom: 25px;
-        color: #224d06;
-        font-size: 2rem;
-        font-family: 'Times New Roman', Times, serif;
+      .model-header{
+        display: flex;
+       
+        flex-direction: column;
+       
+           padding: 10px;
+    
+        
+        
       }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        overflow: hidden;
-        border-radius: 8px;
-      }
-
-      th,
-      td {
-        padding: 14px;
-        text-align: center;
-      }
-
-      th {
-        background: #20740a;
-        color: #fff;
-        font-weight: 600;
-        text-transform: uppercase;
-      }
-
-      tr {
-        background: #eafbea;
-        transition: background 0.3s ease;
-      }
-
-      tr:nth-child(even) {
-        background: #d6f5d6;
-      }
-
-      tr:hover {
-        background: #c8e6c9;
-      }
-
-      .btn {
-        padding: 8px 14px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-      }
-
-      .btn-edit {
-        background-color: #146603;
-        color: #fff;
-      }
-
-      .btn-edit:hover {
-        background-color: #8ce070;
-      }
-
-      .btn-delete {
-        background-color: #d3a009;
-        color: #fff;
-        margin-left: 8px;
-      }
-
-      .btn-delete:hover {
-        background-color: #c0392b;
-      }
-
-      #myChart {
-        max-width: 900px;
-        max-height: 300px;
-      }
-
-      #myChart label {
-        background-color: rgb(23, 163, 23);
-      }
-
-      .editmodal {
-        display: flex; /* nakatago by default */
-        position: fixed;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(10, 115, 35, 0.497); /* semi-transparent */
-        backdrop-filter: blur(4px); /* blur effect */
-        -webkit-backdrop-filter: blur(10px); /* Safari support */
-        border: 1px solid rgba(255, 255, 255, 0.3); /* frosted border */
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* depth shadow */
-          opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-      }
-
-      .modalContent {
-        background: rgb(230, 234, 230);
-        margin: 15% auto;
-        padding: 20px;
-        border-radius: 8px;
-        width: 700px;
-        height: 400px;
-        text-align: center;
-
-        transform: scale(0.7);
-        transition: transform 0.1s ease;
-
-      }
-      .editmodal.active {
-  opacity: 1;
-  pointer-events: auto;
+.model-header h1{
+    margin: 0;                /* tanggalin lahat ng default margin */
+  padding: 0;   
+   
+     
 }
 
-.editmodal.active .modalContent {
-  transform: scale(1); /* zoom in pop-up */
+
+      .model-header p{
+        color: #065b10;
+        font-weight: bold;
+        margin: 0;                /* tanggalin lahat ng default margin */
+  padding: 0;   
+  margin-bottom: 30px;
+  font-size: 13px;
+ 
+      }
+
+    
+
+      
+
+   .forms{
+    display: flex;
+    align-items: start;
+    justify-self: start;
+    flex-direction: column;
+    margin: 10px;
+    margin-left: 25px;
+    gap: 5px;
+   }
+
+   .forms input{
+  
+   border: 2px solid #696b68a4;
+    width: 90%;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    font-size: 15px;
+    padding-left: 15px;
+    margin-bottom: 10px;
+    
+   }
+
+   .forms label{
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    color: #333;
+    text-align: start;
+  
+   }
+
+   .forms select{
+      font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    width: 95%;
+    height: 40px;
+     border-radius: 10px;
+     color: black;
+    margin-top: 5px;
+     margin-bottom: 15px;
+     padding-left: 10px;
+   }
+
+   .forms button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+     width: 45%;
+    height: 40px;
+     border-radius: 10px;
+     border: 0;
+    margin-top:20px ;
+    margin-right: 20px;
+   }
+
+   .forms label i {
+    color: #20740a;
+    margin-right: 8px;
+    width: 18px;
 }
+
+
+    
 
     </style>
   </head>
   <body>
     <div class="container">
       <h1 class="sample"></h1>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/1Seal.png" style="width: 200px; padding-left: 350px;" >
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/9/9d/1Seal.png"
+        style="width: 200px; padding-left: 350px"
+      />
       <h1>MMSU STUDENT TRACKING</h1>
       
       <canvas id="myChart"></canvas>
@@ -161,9 +291,21 @@
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Age</th>
             <th>Status</th>
             <th>course</th>
-            <th>Actions</th>
+
+            <th
+              style="
+                display: flex;
+                gap: 50px;
+                justify-content: end;
+                align-items: center;
+              "
+            >
+              Actions
+              <button class="addbtn" id="Addbtn">+</button>
+            </th>
           </tr>
         </thead>
         <tbody id="table-Body">
@@ -192,18 +334,88 @@
     </div>
 
     <div class="editmodal">
-      <div class="modalContent"></div>
+      <div class="modalContent">
+        <div class="model-header">
+         
+                <h1>
+                  <i class="fa-solid fa-user-tie"></i>
+                  Student Tracking</h1>
+                <p>Add and monitor student information </p>
+        
+        <hr style="width: 300px;">
+          
+       
+        </div>
+      
+      
+        <form class="forms" action="">
+          <label>
+              <i class="fa-solid fa-user"></i>
+            Student Number
+          </label>
+          <input id="Studentnumber" type="number" placeholder="Input student number" />
+          <label>
+            <i class="fa-solid fa-user"></i>
+            Student Name</label>
+          <input id="Studentname" type="text" placeholder="Input Student Name" />
+
+
+            <label>
+            <i class="fa-solid fa-user"></i>
+            Student Age</label>
+          <input id="Studentage" type="number" placeholder="Input Student Age" />
+          <label>
+            
+         
+        
+
+          <label>
+           <i class="fa-solid fa-person-circle-check"></i>
+            Status</label>
+          <select class="select-status">
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+          </select>
+
+          <label>
+            <i class="fa-solid fa-graduation-cap"></i>
+            Choose Course</label>
+          <select class="select-course">
+            <option value="BSIT">INFORMATION TECHNOLOGY (BSIT)</option>
+            <option value="BSCS">COMPUTER SCIENCE (BSCS)</option>
+            <option value="BSIS">INFORMATION SYSTEM (BSIS)</option>
+            <option value="BSNursing">NURSING (BSNursing)</option>
+            <option value="BSCivilEng">CIVIL ENGINEERING(BSCE)</option>
+            <option value="BSArchitecture" (BSArchitecture)</option>
+          </select>
+           <div style="display: flex; width: 100%; justify-content: space-evenly;">
+            
+        <button id="save-addbtn" type="button">save
+          <i class="fa-solid fa-floppy-disk"></i>
+        </button>
+         <button type="button" onclick="hideModal()">exit
+          <i class="fa-solid fa-square-xmark"></i>
+         </button>
+           </div>
+        </form>
+  
+ 
+        
+
+      </div>
     </div>
   </body>
 
   <script>
     const ctx = document.getElementById("myChart");
     const sample = document.querySelector(".sample");
-    const newId = 0;
+    let newId = 1;
 
     const overlay = document.querySelector(".editmodal");
     const modal = document.querySelector(".modalContent");
-    
+
+    const addBtn = document.querySelector("#Addbtn");
+    const savebtn = document.querySelector("#save-addbtn");
 
     let studentCourseCountBSIT = 32;
     let studentCourseCountBSCS = 60;
@@ -211,6 +423,14 @@
     let studentCourseCountBSNursing = 76;
     let studentCourseCountBSCivilEngr = 56;
     let studentCourseCountBSoRANGE = 68;
+
+    const getStudentAge = document.querySelector("#Studentage");
+    const getStudentId = document.querySelector("#Studentnumber");
+    const getStudentname = document.querySelector("#Studentname");
+    const getStudentcourse = document.querySelector(".select-course");
+    const getStudentstatus = document.querySelector(".select-status");
+ 
+    
 
     new Chart(ctx, {
       type: "bar",
@@ -244,22 +464,7 @@
 
     const getTableBody = document.querySelector("#table-Body");
 
-    const students = [
-      {
-        id: 1,
-        studentId: "24-140104",
-        Name: "Aaron Guillemrmo",
-        Status: "Present",
-        Course: "BSIT",
-      },
-      {
-        id: 2,
-        studentId: "24-123456",
-        Name: "Shane Boromeo",
-        Status: "Present",
-        Course: "BSNursing",
-      },
-    ];
+    const students = [];
 
     function RenderStudents() {
       getTableBody.innerHTML = "";
@@ -268,6 +473,7 @@
         return `<tr>
                   <td>${student.studentId}</td>
                   <td>${student.Name}</td>
+                  <td>${student.Age}</td>
                   <td>${student.Status}</td>
                   <td>${student.Course}</td>
                   <td><button class="btn btn-edit" id ="btnedit-${student.id}">Edit</button>
@@ -279,41 +485,63 @@
 
       getTableBody.innerHTML = row.join("");
 
-      console.log(row);
 
+       //for edit btn
       // dito is every student every student my event listener na nag a alert
       students.map((stud) => {
         let editbtn = document.querySelector(`#btnedit-${stud.id}`);
         editbtn.addEventListener("click", () => {
-          overlay.classList.add("active");
-          showModal();
+         
+        
         });
       });
     }
 
+       addBtn.addEventListener("click" ,()=>{
+       
+        showModal();
+       });
+
+
     function showModal() {
-      
       overlay.style.display = "flex";
       modal.style.display = "flex";
       modal.style.flexDirection = "column";
+       overlay.classList.add("active");
+    }
 
+    function hideModal() { 
+      overlay.classList.remove("active");
+      
     }
     // function for student add
     function studentAdd() {
       const newStudent = {
-        id: 1,
-        studentId: "24-140104",
-        Name: "Aaron Guillemrmo",
-        Status: "Present",
-        Course: "BSIT",
+        id: newId,
+        studentId: getStudentId.value,
+        Name: getStudentname.value,
+        Age: getStudentAge.value,
+        Status:getStudentstatus.value,
+        Course: getStudentcourse.value,
       };
+console.log(students);   
+      students.push(newStudent);
     }
+
+    savebtn.addEventListener("click" , ()=>{
+     
+      studentAdd();
+       newId++; 
+      RenderStudents();
+      console.log("hello");
+      console.log(getStudentcourse.value);
+    });
 
     function EditStudents(id) {
       let editedStudent = students.find((f) => f.id);
       return editedStudent;
     }
-    
+
     RenderStudents();
   </script>
 </html>
