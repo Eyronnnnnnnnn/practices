@@ -464,7 +464,7 @@
 
     const getTableBody = document.querySelector("#table-Body");
 
-    const students = [];
+    let students = [];
 
     function RenderStudents() {
       getTableBody.innerHTML = "";
@@ -477,7 +477,7 @@
                   <td>${student.Status}</td>
                   <td>${student.Course}</td>
                   <td><button class="btn btn-edit" id ="btnedit-${student.id}">Edit</button>
-                      <button class="btn btn-delete">Delete</button>
+                      <button class="btn btn-delete" id ="btndelete-${student.id}">Delete</button>
                     </td>
                 
                </tr>`;
@@ -486,15 +486,19 @@
       getTableBody.innerHTML = row.join("");
 
 
-       //for edit btn
+       //for DELETE btn
       // dito is every student every student my event listener na nag a alert
       students.map((stud) => {
-        let editbtn = document.querySelector(`#btnedit-${stud.id}`);
-        editbtn.addEventListener("click", () => {
-         
-        
+        let deletebtn = document.querySelector(`#btndelete-${stud.id}`);
+        deletebtn.addEventListener("click", () => {
+          Studentdelete(stud.id);
+          RenderStudents();
+         console.log("hello");
         });
       });
+
+      
+
     }
 
        addBtn.addEventListener("click" ,()=>{
@@ -524,9 +528,9 @@
         Status:getStudentstatus.value,
         Course: getStudentcourse.value,
       };
-console.log(students);   
+           console.log(students);   
       students.push(newStudent);
-      console.log("hello");
+      
     }
 
     savebtn.addEventListener("click" , ()=>{
@@ -538,10 +542,13 @@ console.log(students);
       console.log(getStudentcourse.value);
     });
 
-    function EditStudents(id) {
-      let editedStudent = students.find((f) => f.id);
-      return editedStudent;
+    function Studentdelete(id) {
+      let deletedStudent = students.filter((f) => f.id !== id );
+      students = deletedStudent; 
+      
     }
+
+  
 
     RenderStudents();
   </script>
