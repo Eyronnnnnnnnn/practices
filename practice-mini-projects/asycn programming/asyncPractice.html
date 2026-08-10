@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsyncProgramming</title>
+</head>
+
+<body>
+
+
+
+</body>
+<script>
+    function enterDungeon(callback) {
+        console.log("Entering the dungeon...");
+        setTimeout(function () {
+            callback();
+        }, 2000);
+    }
+
+    function FightMonster(callback) {
+        console.log("Fighting the monster...");
+        setTimeout(function () {
+            callback();
+        }, 2500);
+    }
+
+    function openTreasure(callback) {
+        console.log("Opening the treasure Chest!!");
+        setTimeout(function () {
+            callback();
+        }, 1500);
+    }
+
+
+    function questComplete() {
+        console.log("Quest complete!!!");
+    }
+
+    enterDungeon(function () {
+      FightMonster(function(){
+        openTreasure(questComplete);
+      });
+    });
+</script>
+
+</html>

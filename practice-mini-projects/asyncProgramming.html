@@ -17,26 +17,22 @@
         setTimeout(function () {
             callback();
         }, 2000);
-
     }
-
+    
     function ToastBread(callback) {
         console.log("Toasting Bread");
         setTimeout(function () {
             callback();
         }, 1500);
-
     }
 
     function breakfastReady() {
-
         console.log("breakfast is Ready!!!");
     }
 
     brewCoffee(function () {
         ToastBread(breakfastReady);
     });
-
 </script>
 
 </html>
