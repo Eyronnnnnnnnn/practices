@@ -1,0 +1,42 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsyncSync</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+
+    function brewCoffee(callback) {
+        console.log("brewing Coffee");
+        setTimeout(function () {
+            callback();
+        }, 2000);
+
+    }
+
+    function ToastBread(callback) {
+        console.log("Toasting Bread");
+        setTimeout(function () {
+            callback();
+        }, 1500);
+
+    }
+
+    function breakfastReady() {
+
+        console.log("breakfast is Ready!!!");
+    }
+
+    brewCoffee(function () {
+        ToastBread(breakfastReady);
+    });
+
+</script>
+
+</html>
