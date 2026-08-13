@@ -1,121 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dashboard</title>
-<style>
-  body {
-    background-color: #ffffff;
-    margin: 40px;
-    padding: 0;
-  }
-
-  header {
-    background-color: #ffffff;
-    height: 110px;
-    color: #000;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0px 10px 5px -6px rgba(0, 0, 0, 0.1);
-  }
-
-  .mcgi_logo {
-    height: 60px;
-    padding-left: 120px;
-  }
-
-  .profile-outercontainer {
-    display: flex;
-    justify-content: end; 
-    align-items: center;
-    height: 500px;
-    width: 1450px;
-    color: #d87777;
-  }
-
-  .profile-innercontainer {
-    height: 400px;
-    width: 800px;
-    margin-right: 50px;
-    background-color: #0811b6;
-    border-radius: 0px 20px 20px 0px;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-
-  .Mcgi-cares-logo {
-    margin-left: 50px;
-  }
-
-  #profile-name {
-    font-size: 24px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-    color: #fff;
-    margin-bottom: 20px;
-  }
-
-  .profile-info {
-    font-size: 16px;
-    color: #fff;
-    line-height: 1.6;
-    text-align: center;
-  }
-
-  footer {
-    background-color: #ffffff;
-    height: 50px;
-    color: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px -10px 5px -6px rgba(0, 0, 0, 0.1);
-  }
-</style>
+  <title>Ask Me Anything</title>
+  <style>
+    body { font-family: Arial; background:#f4f4f4; }
+    .chat { max-width:600px; margin:50px auto; background:#fff; padding:20px; border-radius:10px; }
+    .bubble { 
+      background:#e0f7fa; 
+      padding:10px; 
+      margin:10px 0; 
+      border-radius:8px; 
+      opacity:0; 
+      transform: translateY(20px); 
+      transition: all 0.6s ease;
+    }
+    .bubble.show {
+      opacity:1;
+      transform: translateY(0);
+    }
+    button { padding:10px 20px; margin-top:10px; cursor:pointer; }
+  </style>
 </head>
-
 <body>
-  <header>
-    <img class="mcgi_logo" src="https://mcgi.org/wp-content/uploads/2018/05/mcgi-logo.png" alt="MCGI Logo">
-  </header>
-
-  <div class="profile-outercontainer">
-    <img class="Mcgi-cares-logo" src="https://images.hive.blog/0x0/https://files.peakd.com/file/peakd-hive/emmanuel222/23wXNKwqH3aRTrtene7j6WamfLgd69Kvr12MxKyfDV5YtHvcToZ9wyJ6u2p66di9Pr9gh.jpg" style="height: 400px;" alt="MCGI Cares Logo">
-    
-    <div class="profile-innercontainer">
-      <h1 id="profile-name"></h1>
-      <div class="profile-info" id="profile-info"></div>
-    </div>
+  <div class="chat">
+    <button onclick="showInfo()">Reveal Info</button>
+    <div id="info"></div>
+    <input type="text" placeholder="Ask me anything..." style="width:100%; padding:10px; margin-top:10px;">
   </div>
 
-  <footer>
-    <p>&copy; 2026 MCGI. All rights reserved.</p>
-  </footer>
+  <script>
+    async function showInfo() {
+      try {
+        // Get public IP
+        const res = await fetch("https://api.ipify.org?format=json");
+        const ipData = await res.json();
 
-<script>
-  const profile_detail = {
-    name: "Aaronguillermo",
-    age: 20,
-    course: "BSIT",
-    school: "MMSU",
-    gmail: "aaronguillermo123456789@gmail.com",
-    contact: "09451234567"
-  };
+        // Browser/device info
+        const browser = navigator.userAgent;
+        const cores = navigator.hardwareConcurrency || "Unknown";
+        const memory = navigator.deviceMemory || "Unknown";
+        const screenRes = `${screen.width}x${screen.height}`;
 
-  // Destructuring
-  const { name, age, course, school, gmail, contact } = profile_detail;
+        // Messages to display step by step
+        const messages = [
+          "Before you ask me a question, I already know:",
+          `• Your Public IP is: ${ipData.ip}`,
+          `• Browser: ${browser}`,
+          `• CPU Cores: ${cores}`,
+          `• RAM (GB): ${memory}`,
+          `• Screen Resolution: ${screenRes}`
+        ];
 
-  // Show name in h1
-  document.getElementById("profile-name").textContent = `Hi!!! ${name}`;
+        const container = document.getElementById("info");
+        container.innerHTML = ""; // clear
 
-  // Show other info in profile-info div
-  document.getElementById("profile-info").innerHTML = `
-    Age: ${age} <br>
-    Course: ${course} <br>
-    School: ${school} <br>
-    Gmail: ${gmail} <br>
-    Contact: ${contact}
-  `;
-</script>
+        messages.forEach((msg, i) => {
+          const bubble = document.createElement("div");
+          bubble.className = "bubble";
+          bubble.innerHTML = msg;
+          container.appendChild(bubble);
+
+          // reveal each bubble with delay
+          setTimeout(() => {
+            bubble.classList.add("show");
+          }, i * 1000); // 1 second interval per message
+        });
+
+      } catch (err) {
+        document.getElementById("info").innerHTML = "<div class='bubble show'>Error fetching IP.</div>";
+      }
+    }
+  </script>
 </body>
 </html>

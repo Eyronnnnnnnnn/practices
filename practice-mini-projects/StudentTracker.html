@@ -394,7 +394,7 @@
                         <option value="BSIS">INFORMATION SYSTEM (BSIS)</option>
                         <option value="BSNursing">NURSING (BSNursing)</option>
                         <option value="BSCivilEng">CIVIL ENGINEERING(BSCE)</option>
-                        <option value="BSArchitecture" (BSArchitecture)</option>
+                        <option value="BSArchitecture">BSArchitecture</option>
                     </select>
                     <div style="display: flex; width: 100%; justify-content: space-evenly;">
 
@@ -415,6 +415,7 @@
 </body>
 
 <script>
+
     const ctx = document.getElementById("myChart");
     const sample = document.querySelector(".sample");
     let newId = 0;
@@ -426,12 +427,12 @@
     const addBtn = document.querySelector("#Addbtn");
     const savebtn = document.querySelector("#save-addbtn");
 
-    let studentCourseCountBSIT = 32;
-    let studentCourseCountBSCS = 60;
-    let studentCourseCountBSIS = 79;
-    let studentCourseCountBSNursing = 76;
-    let studentCourseCountBSCivilEngr = 56;
-    let studentCourseCountBSoRANGE = 68;
+    let studentCourseCountBSIT;
+    let studentCourseCountBSCS;
+    let studentCourseCountBSIS;
+    let studentCourseCountBSNursing;
+    let studentCourseCountBSCivilEngr;
+    let studentCourseCountBSoRANGE;
 
     const getStudentAge = document.querySelector("#Studentage");
     const getStudentId = document.querySelector("#Studentnumber");
@@ -441,20 +442,20 @@
 
 
 
-    new Chart(ctx, {
+    let myChart = new Chart(ctx, {
         type: "bar",
         data: {
-            labels: ["BSIT", "BSCS", "BSIS", "BSNursing", "BSCivilEng", "Orange"],
+            labels: ["BSIT", "BSCS", "BSIS", "BSNursing", "BSCivilEng", "BSArchitecture"],
             datasets: [
                 {
                     label: "courses",
                     data: [
-                        studentCourseCountBSIT,
-                        studentCourseCountBSCS,
-                        studentCourseCountBSIS,
-                        studentCourseCountBSNursing,
-                        studentCourseCountBSCivilEngr,
-                        studentCourseCountBSoRANGE,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
                     ],
                     borderWidth: 2,
                     backgroundColor: "orange",
@@ -520,6 +521,7 @@
     });
 
     function showModal() {
+
         overlay.style.display = "flex";
         modal.style.display = "flex";
         modal.style.flexDirection = "column";
@@ -541,6 +543,7 @@
         };
         console.log(students);
         students.push(newStudent);
+                UpdateChart();
 
     }
 
@@ -560,7 +563,9 @@
 
     function Studentdelete(id) {
         let deletedStudent = students.filter((f) => f.id !== id);
+
         students = deletedStudent;
+        UpdateChart();
 
     }
 
@@ -588,7 +593,25 @@
         SaveEditedStudent.Age = getStudentAge.value;
         SaveEditedStudent.Course = getStudentcourse.value;
         SaveEditedStudent.Status = getStudentstatus.value;
+        UpdateChart();
     }
+
+
+    function UpdateChart() {
+        const BSITcourseCount = students.filter((stud) => stud.Course === "BSIT").length;
+        const BSCScourseCount = students.filter((stud) => stud.Course === "BSCS").length;
+        const BSIScourseCount = students.filter((stud) => stud.Course === "BSIS").length;
+        const BSNursingcourseCount = students.filter((stud) => stud.Course === "BSNursing").length;
+        const BSCivilEngrCount = students.filter((stud) => stud.Course === "BSCivilEng").length;
+        const BSArchitecture = students.filter((stud) => stud.Course === "BSArchitecture").length;
+
+        myChart.data.datasets[0].data = [BSITcourseCount, BSCScourseCount, BSIScourseCount, BSNursingcourseCount, BSCivilEngrCount, BSArchitecture];
+        myChart.update();
+    }
+
+
+
+
 
     RenderStudents();
 </script>

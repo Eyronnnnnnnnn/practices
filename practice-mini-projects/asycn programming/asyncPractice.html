@@ -18,31 +18,28 @@
             callback();
         }, 2000);
     }
-
     function FightMonster(callback) {
         console.log("Fighting the monster...");
         setTimeout(function () {
             callback();
         }, 2500);
     }
-
     function openTreasure(callback) {
         console.log("Opening the treasure Chest!!");
         setTimeout(function () {
             callback();
         }, 1500);
     }
-
-
     function questComplete() {
         console.log("Quest complete!!!");
     }
-
     enterDungeon(function () {
       FightMonster(function(){
         openTreasure(questComplete);
       });
     });
+
+
 </script>
 
 </html>
