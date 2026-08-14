@@ -11,26 +11,92 @@
 
 <script>
 
-    const CheckAge = new Promise((resolve , reject)=>{
-        let age = 15; 
+    // const CheckAge = new Promise((resolve , reject)=>{
+    //     let age = 15; 
 
-        if (age >= 18){
-        resolve("Pwede ka na mag-drive!");
-        }else{
-            reject("Hindi ka pa pwede mag-drive");
-        }
+    //     if (age >= 18){
+    //     resolve("Pwede ka na mag-drive!");
+    //     }else{
+    //         reject("Hindi ka pa pwede mag-drive");
+    //     }
 
-    });
+    // });
 
     
-      CheckAge
-      .then((result) =>{
-        console.log(result);
+    //   CheckAge
+    //   .then((result) =>{
+    //     console.log(result);
+    //   })
+
+    //   .catch((error)=>{
+    //     console.log(error);
+    //   })
+
+      // const checkNumber = new Promise ((resolve , reject) =>{
+      //   let number1 = 32;
+      //   if(number1 % 2 === 0  ){
+      //     resolve(number1);
+      //   }else{
+      //     reject(" he number  is  odd");
+      //   }
+      // })
+
+      // checkNumber
+      // .then((result) =>{
+      //   return result * 2 ; 
+      // })
+
+      // .then ((result)=>{
+      //   console.log(result);
+      //   return result ; 
+      // })
+
+      // .then ((result)=>{
+      //   return result * 32 ; 
+      // })
+
+      //    .then ((result)=>{
+      //   console.log(result);
+      // })
+
+      // .catch((error)=>{
+      //   console.log(error);
+      // });
+
+    
+      const checkAge = new Promise ((resolve , reject) => {
+
+        let age = 18 ; 
+        if(age >= 18 ){
+          resolve("pwede nang bumoto");
+        }else{
+          reject("Hindi pa pwedeng bumoto");
+        }
+
       })
 
-      .catch((error)=>{
-        console.log(error);
-      })
+
+      async function getCheckAge(){
+          try{
+            const result = await checkAge; 
+            console.log(result);
+          }catch(error){
+            console.log(error);
+          }
+      }
+
+      getCheckAge();
+
+      // checkAge
+
+      // .then((result)=>{
+      //   console.log(result);
+      // })
+
+      // .catch((error)=>{
+      //   console.log(error);
+      // })
+
 
 </script>
 </html>

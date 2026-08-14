@@ -1,0 +1,36 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api</title>
+</head>
+
+<body>
+    <div id="hero-cont" class="hero-container">
+   <h1>hero</h1>
+    </div>
+</body>
+<script>
+
+    async function getData() {
+        try {
+            const response = await fetch("https://dragonball-api.com/api/characters/1");
+            const data = await response.json();
+            console.log(data);
+            console.log(data.name);
+            console.log(data.image);
+            console.log(data.ki);
+            console.log(data.description);
+            
+            const getimage = document.querySelector(".hero-container");
+            getimage.inn = `<img src="${data.image}" alt="${data.name}">`;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    getData();
+
+</script>
+
+</html>
