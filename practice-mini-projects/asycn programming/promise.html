@@ -97,6 +97,28 @@
       //   console.log(error);
       // })
 
+      const checkHealth =  new Promise((resolve ,reject)=>{
+
+        let health = 50 ;
+        if(health <= 50){
+          resolve("GoodCondition");
+        }else{
+          reject("badcondition");
+        }
+
+ 
+      });
+
+
+             checkHealth
+        .then ((result)=>{
+          console.log(result);
+        })
+
+        .catch((error)=>{
+              console.log(error);
+        });
+
 
 </script>
 </html>
