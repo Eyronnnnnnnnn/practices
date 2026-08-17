@@ -1,124 +1,172 @@
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promises</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promises</title>
 </head>
+
 <body>
-    
+
 
 </body>
 
 <script>
 
-    // const CheckAge = new Promise((resolve , reject)=>{
-    //     let age = 15; 
+  // const CheckAge = new Promise((resolve , reject)=>{
+  //     let age = 15; 
 
-    //     if (age >= 18){
-    //     resolve("Pwede ka na mag-drive!");
-    //     }else{
-    //         reject("Hindi ka pa pwede mag-drive");
-    //     }
+  //     if (age >= 18){
+  //     resolve("Pwede ka na mag-drive!");
+  //     }else{
+  //         reject("Hindi ka pa pwede mag-drive");
+  //     }
 
-    // });
+  // });
 
+
+  //   CheckAge
+  //   .then((result) =>{
+  //     console.log(result);
+  //   })
+
+  //   .catch((error)=>{
+  //     console.log(error);
+  //   })
+
+  // const checkNumber = new Promise ((resolve , reject) =>{
+  //   let number1 = 32;
+  //   if(number1 % 2 === 0  ){
+  //     resolve(number1);
+  //   }else{
+  //     reject(" he number  is  odd");
+  //   }
+  // })
+
+  // checkNumber
+  // .then((result) =>{
+  //   return result * 2 ; 
+  // })
+
+  // .then ((result)=>{
+  //   console.log(result);
+  //   return result ; 
+  // })
+
+  // .then ((result)=>{
+  //   return result * 32 ; 
+  // })
+
+  //    .then ((result)=>{
+  //   console.log(result);
+  // })
+
+  // .catch((error)=>{
+  //   console.log(error);
+  // });
+
+
+  const checkAge = new Promise((resolve, reject) => {
+
+    let age = 18;
+    if (age >= 18) {
+      resolve("pwede nang bumoto");
+    } else {
+      reject("Hindi pa pwedeng bumoto");
+    }
+
+  })
+
+
+  async function getCheckAge() {
+    try {
+      const result = await checkAge;
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getCheckAge();
+
+  // checkAge
+
+  // .then((result)=>{
+  //   console.log(result);
+  // })
+
+  // .catch((error)=>{
+  //   console.log(error);
+  // })
+
+  const checkHealth = new Promise((resolve, reject) => {
+
+    let health = 50;
+    if (health <= 50) {
+      resolve("GoodCondition");
+    } else {
+      reject("badcondition");
+    }
+
+
+  });
+
+
+  checkHealth
+    .then((result) => {
+      console.log(result);
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+
+
+  const checkGrade = new Promise((resolve, reject) => {
+    let grade = 60;
+    if (grade >= 60) {
+      resolve("Pasado")
+    } else {
+      reject("Hindi Pasado")
+    }
+  });
+
+  // checkGrade 
+  // .then((result)=>{
+  //   console.log(result);
+  // })
+
+  // .catch((error)=>{
+  //   console.log(error)
+  // })
+
+  async function runcheckgrade() {
+    try {
+      const result = await checkGrade;
+      console.log(result);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  runcheckgrade();
+
+
+    const checkStock = (itemName) => {
     
-    //   CheckAge
-    //   .then((result) =>{
-    //     console.log(result);
-    //   })
-
-    //   .catch((error)=>{
-    //     console.log(error);
-    //   })
-
-      // const checkNumber = new Promise ((resolve , reject) =>{
-      //   let number1 = 32;
-      //   if(number1 % 2 === 0  ){
-      //     resolve(number1);
-      //   }else{
-      //     reject(" he number  is  odd");
-      //   }
-      // })
-
-      // checkNumber
-      // .then((result) =>{
-      //   return result * 2 ; 
-      // })
-
-      // .then ((result)=>{
-      //   console.log(result);
-      //   return result ; 
-      // })
-
-      // .then ((result)=>{
-      //   return result * 32 ; 
-      // })
-
-      //    .then ((result)=>{
-      //   console.log(result);
-      // })
-
-      // .catch((error)=>{
-      //   console.log(error);
-      // });
-
-    
-      const checkAge = new Promise ((resolve , reject) => {
-
-        let age = 18 ; 
-        if(age >= 18 ){
-          resolve("pwede nang bumoto");
-        }else{
-          reject("Hindi pa pwedeng bumoto");
-        }
-
-      })
-
-
-      async function getCheckAge(){
-          try{
-            const result = await checkAge; 
-            console.log(result);
-          }catch(error){
-            console.log(error);
-          }
+     
+     return new Promise((resolve , reject)=>{
+      if(itemName === "shoes"){
+        resolve("My stock")
+      }else{
+        reject("walang stock");
       }
-
-      getCheckAge();
-
-      // checkAge
-
-      // .then((result)=>{
-      //   console.log(result);
-      // })
-
-      // .catch((error)=>{
-      //   console.log(error);
-      // })
-
-      const checkHealth =  new Promise((resolve ,reject)=>{
-
-        let health = 50 ;
-        if(health <= 50){
-          resolve("GoodCondition");
-        }else{
-          reject("badcondition");
-        }
-
- 
-      });
-
-
-             checkHealth
-        .then ((result)=>{
-          console.log(result);
-        })
-
-        .catch((error)=>{
-              console.log(error);
-        });
-
+     })
+      
+      
+    }
 
 </script>
+
 </html>
