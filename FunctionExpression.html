@@ -35,7 +35,7 @@
  }
 
 function createWallet(balance) {
-  
+
   function addMoney(amount) {
    balance = amount + balance;
    console.log(balance);
@@ -44,7 +44,7 @@ function createWallet(balance) {
   return addMoney;
 }
 
-const newbal = createWallet();
+const newbal = createWallet(0);
 newbal(50);
 
 </script>
