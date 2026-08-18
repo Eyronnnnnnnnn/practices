@@ -9,9 +9,44 @@
 </body>
 
 <script>
-    const isEven = (num)=>{
-    return num % 2 === 0;
+    // const isEven = (num)=>{
+    // return num % 2 === 0;
+    // }
+
+    // function scope 
+
+ function createCounter(){
+  let count = 0;
+  function increment(){
+    count ++ ; 
+    console.log(count);
+  }
+  return increment;
+ }
+
+ const addCount = createCounter();
+ addCount();
+
+ function createGreeter(name){
+    function sayHello(){
+      console.log("hello" + name);
     }
+    return sayHello;
+ }
+
+function createWallet(balance) {
+  
+  function addMoney(amount) {
+   balance = amount + balance;
+   console.log(balance);
+    
+  }
+  return addMoney;
+}
+
+const newbal = createWallet();
+newbal(50);
+
 </script>
 
 </html>
