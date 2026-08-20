@@ -43,10 +43,25 @@ function createWallet(balance) {
   }
   return addMoney;
 }
-let hii = 0 ;
-let hiiiiiii = 0;
+
 const newbal = createWallet(0);
 newbal(50);
+
+
+// closure 
+
+function createCounter(){
+  let count = 0 ;
+  function increment(){
+    count++;
+    console.log(count);
+  }
+  return increment ; 
+}
+
+const mycounter = createCounter();
+mycounter();
+mycounter();
 
 </script>
 
