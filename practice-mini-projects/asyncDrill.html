@@ -16,6 +16,7 @@
             const response = await fetch("https://randomuser.me/api/");
             const data = await response.json();
             let randomfirstname = data.results[0].name.first;
+         
             let randomlastname = data.results[0].name.last;
             // console.log(data.results[0].name.first ,"",data.results[0].name.last );
             // console.log("Random User : " + data.results[0].name.first ,"",data.results[0].name.last  );
