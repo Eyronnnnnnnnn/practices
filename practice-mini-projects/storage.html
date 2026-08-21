@@ -16,9 +16,14 @@ const studentData = [
 
 
 localStorage.setItem("student" ,JSON.stringify(studentData));
+//  localStorage.removeItem("student");
    const savestudents =  localStorage.getItem("student");
    const readablestudent = JSON.parse(savestudents);
     console.log(readablestudent);
+
+    localStorage.clear();
+   
+    
 </script>
 
 
