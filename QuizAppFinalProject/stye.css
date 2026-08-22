@@ -1,0 +1,32 @@
+body{
+    display: flex;
+    margin: 0;
+}
+
+.sidebar{
+    background-color: rgb(12, 5, 88);
+    width: 200px;
+    height: 100%;
+     position: fixed;
+      left: 0;
+      top: 0;
+}
+
+.sidebar h1{
+    padding-top:15px ;
+    text-align: center;
+   
+}
+
+.sidebar ul{
+    list-style: none;
+}
+
+ .sidebar ul li a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      padding: 10px;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }

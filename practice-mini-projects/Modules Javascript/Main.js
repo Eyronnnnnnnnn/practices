@@ -1,6 +1,9 @@
 import { substract } from "./math.js";
 
+const geth1 = document.querySelector("#showtext");
 
-substract(10,4);
+const answer = substract(10,4);
 
-console.log();
+console.log(answer);
+
+geth1.innerHTML = answer;
