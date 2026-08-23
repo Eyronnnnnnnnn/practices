@@ -13,8 +13,8 @@
 - ✅ Promises (resolve/reject, .then/.catch, chaining)
 - ✅ Async/Await
 - ✅ Fetch API
-- ⬜ Storage (localStorage/sessionStorage)
-- ⬜ Modules (import/export)
+- ✅ Storage (localStorage/sessionStorage)
+- ✅ Modules (import/export)
 - ⬜ Comprehensive JS Review (final test before React)
 
 **Mini-Projects Completed:**
