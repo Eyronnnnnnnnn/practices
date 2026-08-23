@@ -11,7 +11,7 @@ header {
   position: sticky;       /* para dumikit sa taas habang nag-scroll */
   top: 0;                 /* laging nasa pinaka-taas */
   height: 100px;
-  background-color: bisque;
+  background-color: white;
   margin-left: 240px;     /* sakto sa lapad ng sidebar */
   width: calc(100% - 240px); /* para hindi lumampas sa sidebar */
   z-index: 10;            /* para hindi matakpan ng content */
@@ -139,12 +139,12 @@ header {
 .body-container {
   display: flex;
   flex-direction: column;
-  background-color: aqua;
+  background-color:#f4f5fb;
   width: 100%;
   margin-top: 0;
-  
-  height: 100vh;
-
+  height: 1400px;
+ min-height: 100vh;      /* at least buong screen */
+  max-height: 1400px;  
 }
 
 .inner-body-container {
@@ -165,26 +165,62 @@ header {
 .con1{
 
 width: 280px;
-border-radius: 10px;
   height: 110px;
-  background-color: rgb(28, 95, 95);
+    background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
 }
 .con2{
 width: 280px;
-border-radius: 10px;
   height: 110px;
-  background-color: rgb(64, 101, 101);
+    background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
 }
 .con3{
 
 width: 280px;
-border-radius: 10px;
   height: 110px;
-  background-color: rgb(61, 158, 158);
+    background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
 }
 .con4{
 width: 280px;
-border-radius: 10px;
   height: 110px;
-  background-color: rgb(28, 95, 95);
+    background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+
+.quiz-display-data-container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 400px;
+  
+  
+}
+
+.display1{
+   width: 577px;
+  height: 100%;
+  border-radius: 20px;
+     background: #fff;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+.display2{
+ width: 577px;
+   height: 100%;
+   border-radius: 20px;
+   background: #fff;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+.quickaction-container{
+  background-color: #5b4bdb;
+  width: 500px;
+  height: 300px;
 }
