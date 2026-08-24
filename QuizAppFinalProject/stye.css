@@ -23,7 +23,7 @@ header {
 
 
 .sidebar {
-  background: #5b4bdb; /* deep purple pero semi-transparent */
+  background: #5d559b; /* deep purple pero semi-transparent */
   width: 240px;
   height: 100%;
   position: fixed;
@@ -144,7 +144,7 @@ header {
   margin-top: 0;
   height: 1400px;
  min-height: 100vh;      /* at least buong screen */
-  max-height: 1400px;  
+  max-height: 1100px;  
 }
 
 .inner-body-container {
@@ -201,6 +201,7 @@ width: 280px;
   height: 400px;
   
   
+  
 }
 
 .display1{
@@ -220,7 +221,17 @@ width: 280px;
 }
 
 .quickaction-container{
-  background-color: #5b4bdb;
-  width: 500px;
-  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 100%;
+  height: 350px;
+}
+
+.quickaction-container-inner{
+   background-color: #ded6ff;
+   width:100%;
+   height: 270px;
+   border-radius: 20px;
 }
