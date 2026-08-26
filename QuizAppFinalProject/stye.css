@@ -23,7 +23,7 @@ header {
 
 
 .sidebar {
-  background: #5d559b; /* deep purple pero semi-transparent */
+  background: #4534c9; /* deep purple pero semi-transparent */
   width: 240px;
   height: 100%;
   position: fixed;
@@ -225,14 +225,49 @@ width: 280px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  flex-direction: column-reverse;
   width: 100%;
   height: 350px;
+
 }
 
 .quickaction-container-inner{
-   background-color: #ded6ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 29px;
+    background: #fff;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
    width:100%;
-   height: 270px;
+   height: 260px;
    border-radius: 20px;
+   
+  
 }
+
+.box1{
+  width: 210px;
+  height: 140px;
+ background: #fff;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+  border-radius: 20px;
+} 
+
+.quickaction-outer-container{
+  width: 100%;
+  height: 10px;
+  /* background-color: #5b4bdb; */
+}
+
+.quiction-btns{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 95%;
+  height: 100%;
+  
+  
+}
+
+
