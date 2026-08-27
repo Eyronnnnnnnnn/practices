@@ -156,9 +156,12 @@
 
       <div class="body-container">
         <header>
-          <h1>heelo</h1>
+          <div class="topbar-copy">
+            <h1 id="page-title">Dashboard</h1>
+            <p id="page-subtitle">Welcome to Quizward! <span>👋</span> Looks like you haven't created any quizzes yet.</p>
+          </div>
         </header>
-        <div class="inner-body-container">
+        <div class="inner-body-container page-view" data-view="dashboard">
 
 
           <div class="dashboard-data-container">
@@ -191,6 +194,60 @@
 
           </div>
         </div>
+
+        <section class="page-view create-quiz-view" data-view="create">
+          <div class="page-heading">
+            <div><button class="back-button" type="button" data-view-target="dashboard">←</button><div><h2>Create New Quiz</h2><p>Fill in the details to create your quiz</p></div></div>
+          </div>
+          <div class="stepper"><div class="step is-current" data-step="details"><b>1</b><strong>Quiz Details</strong></div><i></i><div class="step" data-step="questions"><b>2</b><span>Add Questions</span></div><i></i><div class="step" data-step="settings"><b>3</b><span>Settings</span></div></div>
+          <form class="quiz-form" id="quiz-builder-form">
+            <div class="form-section quiz-step is-visible" data-step-view="details">
+              <label for="quiz-title">Quiz Title <em>*</em><input id="quiz-title" name="title" type="text" placeholder="e.g. General Knowledge Quiz" required></label>
+              <label>Description<textarea rows="4" placeholder="Describe what this quiz is about..."></textarea></label>
+              <div class="form-grid">
+                <label for="quiz-category">Category<select id="quiz-category" name="category" required><option value="">Select category</option><option>General Knowledge</option><option>Science</option><option>History</option></select></label>
+                <label for="time-limit">Time Limit (minutes)<input id="time-limit" name="timeLimit" type="number" min="1" value="10"></label>
+              </div>
+              <p class="form-error" role="alert" aria-live="polite"></p>
+              <div class="form-actions"><button class="primary-button" type="button" data-step-target="questions">Next: Add Questions <span>›</span></button></div>
+            </div>
+            <div class="form-section quiz-step" data-step-view="questions">
+              <div class="question-list">
+                <div class="question-item">
+                  <div class="question-card-heading"><span class="question-chip">Question 1</span><select aria-label="Question 1 type"><option>Multiple Choice</option><option>True or False</option><option>Short Answer</option></select></div>
+                  <input class="question-input" type="text" placeholder="Enter your question here...">
+                  <div class="answer-list">
+                    <label><input type="radio" name="correct-answer-1" checked><input type="text" placeholder="Option 1"></label>
+                    <label><input type="radio" name="correct-answer-1"><input type="text" placeholder="Option 2"></label>
+                    <label><input type="radio" name="correct-answer-1"><input type="text" placeholder="Option 3"></label>
+                    <label><input type="radio" name="correct-answer-1"><input type="text" placeholder="Option 4"></label>
+                  </div>
+                  <p class="field-hint">Select the radio button next to the correct answer.</p>
+                </div>
+              </div>
+              <button class="add-question-button" type="button">＋ &nbsp;Add Question</button>
+              <div class="form-actions step-actions"><button class="secondary-button" type="button" data-step-target="details">← Back</button><button class="primary-button" type="button" data-step-target="settings">Next: Settings <span>›</span></button></div>
+            </div>
+            <div class="form-section quiz-step" data-step-view="settings">
+              <div class="settings-grid">
+                <div><label class="settings-label">Visibility</label><div class="visibility-options"><button class="visibility-option is-selected" type="button">◎<strong>Public</strong></button><button class="visibility-option" type="button">♙<strong>Private</strong></button></div></div>
+                <label>Passing Score (%)<input type="number" value="60" min="0" max="100"></label>
+              </div>
+              <label class="shuffle-row"><span><strong>Shuffle Questions</strong><small>Randomize question order for each attempt</small></span><input type="checkbox"><i></i></label>
+              <div class="quiz-summary"><strong>Quiz Summary</strong><p id="quiz-summary-text">Title: Untitled Quiz<br>Category: None<br>Questions: 1<br>Time Limit: 10 minutes<br>Visibility: public<br>Passing Score: 60%</p></div>
+              <div class="form-actions step-actions"><button class="secondary-button" type="button" data-step-target="questions">← Back</button><button class="secondary-button" type="button">▣ &nbsp;Save Draft</button><button class="primary-button" type="submit">▷ &nbsp;Publish Quiz</button></div>
+            </div>
+          </form>
+        </section>
+
+        <section class="page-view quizzes-view" data-view="quizzes">
+          <div class="page-heading">
+            <div><p class="eyebrow">YOUR LIBRARY</p><h2>My quizzes</h2><p>Manage, edit, and share the quizzes you create.</p></div>
+            <button class="primary-button" type="button" data-view-target="create"><span>＋</span> Create Quiz</button>
+          </div>
+          <div class="filter-bar"><div class="search-box"><span>⌕</span><input type="search" placeholder="Search quizzes"></div><select><option>All categories</option><option>General Knowledge</option><option>Science</option></select></div>
+          <div class="empty-library"><div class="empty-icon">▤</div><h3>No quizzes yet</h3><p>Create your first quiz and it will show up here.</p><button class="primary-button" type="button" data-view-target="create"><span>＋</span> Create your first quiz</button></div>
+        </section>
 
       </div>
 
