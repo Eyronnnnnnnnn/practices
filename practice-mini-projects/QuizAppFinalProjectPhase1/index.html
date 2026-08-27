@@ -1,97 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz App</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 20px;
-    }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-    h2 {
-      text-align: center;
-    }
-    .question {
-      margin: 20px 0;
-      font-size: 1.2em;
-    }
-    .options button {
-      display: block;
-      width: 100%;
-      margin: 8px 0;
-      padding: 10px;
-      border: none;
-      border-radius: 4px;
-      background: #1e3c72;
-      color: #fff;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .options button:hover {
-      background: #2a5298;
-    }
-    .score {
-      text-align: center;
-      font-size: 1.2em;
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .question {
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
+
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 8px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background: #1e3c72;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .options button:hover {
+            background: #2a5298;
+        }
+
+        .score {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container">
-    <h2>Quiz App</h2>
-    <!-- Question area -->
-    <div id="quiz">
-      <div class="question">Sample Question dito</div>
-      <div class="options">
-        <button>Choice A</button>
-        <button>Choice B</button>
-        <button>Choice C</button>
-        <button>Choice D</button>
-      </div>
+    <div class="container">
+        <h2>Quiz App</h2>
+        <!-- Question area -->
+        <div id="quiz">
+            <div class="question">Sample Question dito</div>
+            <div class="options">
+                <button>Choice A</button>
+                <button>Choice B</button>
+                <button>Choice C</button>
+                <button>Choice D</button>
+            </div>
+        </div>
+
+        <div class="score" id="score">Score: 0</div>
     </div>
-    
-    <div class="score" id="score">Score: 0</div>
-  </div>
 </body>
 <script>
     const Questions = [
-        {id: 1 ,
-         Question: "What is the structured sequence of stages in software development called?",
-         Options: ["SDLC","Agile","Scrum","Waterfalls"],
-        Answer: "SDLC"
+        {
+            id: 1,
+            Question: "What is the structured sequence of stages in software development called?",
+            Options: ["SDLC", "Agile", "Scrum", "Waterfalls"],
+            Answer: "SDLC"
         },
 
-         {id: 2 ,
-         Question: "",
-         Options: ["SDLC","Agile","Scrum","Waterfalls"],
-        Answer: ""}
-
-         {id: 3 ,
-         Question: "",
-         Options: ["SDLC","Agile","Scrum","Waterfalls"],
-        Answer: ""}
-
-         {id: 4 ,
-         Question: "",
-         Options: ["SDLC","Agile","Scrum","Waterfalls"],
-        Answer: ""}
-
-         {id: 5 ,
-         Question: "",
-         Options: ["SDLC","Agile","Scrum","Waterfalls"],
-        Answer: ""}
+        {
+            id: 2,
+            Question: "Which SDLC phase involves actual coding?",
+              Options: ["Planning", "Implementation", "Testing", "Maintenance"],
+            Answer: "Implementation"
+        }
+        
+        {
+            id: 3, 
+            Question:"What is the main purpose of Software Testing?",
+            Options: ["Add new features", "Find errors/bugs", "Deploy the system", "Design the UI"],
+            answer: " Find errors/bugs"
+        }
     ]
 </script>
+
 </html>
