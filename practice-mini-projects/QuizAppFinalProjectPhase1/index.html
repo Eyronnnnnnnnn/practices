@@ -48,18 +48,36 @@
             background: #2a5298;
         }
 
-        @keyframes shake { 
-              0% { transform: translateX(0); }
-    20% { transform: translateX(-5px); }
-    40% { transform: translateX(5px); }
-    60% { transform: translateX(-5px); }
-    80% { transform: translateX(5px); }
-    100% { transform: translateX(0); }
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-5px);
+            }
+
+            40% {
+                transform: translateX(5px);
+            }
+
+            60% {
+                transform: translateX(-5px);
+            }
+
+            80% {
+                transform: translateX(5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
         }
 
-        .shake{
-              animation: shake 0.4s ease;
-    background: red; /* temporary color while shaking */
+        .shake {
+            animation: shake 0.4s ease;
+            background: red;
+            /* temporary color while shaking */
         }
 
         .score {
@@ -68,38 +86,39 @@
             margin-top: 20px;
         }
 
-        .resetbtn-container{
+        .resetbtn-container {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
             height: 120px;
-           
+
         }
-        .resetbtn-container button{
+
+        .resetbtn-container button {
             width: 100px;
             height: 40px;
-            font-size:17px;
-  font-family:Arial;
-  width:110px;
-  height:35px;
-  border-width:1px;
-  color:rgba(255, 255, 255, 1);
-  border-color:rgba(218, 56, 42, 1);
-  font-weight:;
-  border-top-left-radius:4px;
-  border-top-right-radius:4px;
-  border-bottom-left-radius:4px;
-  border-bottom-right-radius:4px;
-  box-shadow: 0px 10px 14px -7px rgba(85, 78, 76, 1);
-  text-shadow: 0px 1px 0px rgba(212, 102, 64, 1);
-  background:linear-gradient(rgba(231, 19, 19, 1), rgba(180, 5, 5, 1));
-            
+            font-size: 17px;
+            font-family: Arial;
+            width: 110px;
+            height: 35px;
+            border-width: 1px;
+            color: rgba(255, 255, 255, 1);
+            border-color: rgba(218, 56, 42, 1);
+            font-weight: ;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0px 10px 14px -7px rgba(85, 78, 76, 1);
+            text-shadow: 0px 1px 0px rgba(212, 102, 64, 1);
+            background: linear-gradient(rgba(231, 19, 19, 1), rgba(180, 5, 5, 1));
+
         }
 
         .resetbtn-container button:hover {
-  background: linear-gradient(rgba(180, 5, 5, 1), rgba(231, 19, 19, 1));
-}
+            background: linear-gradient(rgba(180, 5, 5, 1), rgba(231, 19, 19, 1));
+        }
     </style>
 </head>
 
@@ -118,16 +137,16 @@
         </div>
 
         <div class="score" id="score">Score: 0 / 3</div>
-             
+
         <div class="resetbtn-container">
-           <button id="resetbtn">RESET</button>
-    </div>
+            <button id="resetbtn">RESET</button>
+        </div>
     </div>
 
-    
+
 </body>
 <script type="module" src="Main.js">
-  
+
 </script>
 
 </html>

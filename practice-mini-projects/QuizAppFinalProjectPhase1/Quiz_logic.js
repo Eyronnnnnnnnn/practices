@@ -99,4 +99,5 @@ function resetQuiz() {
 
   getQuestion.innerHTML = Quiz_Questions[currentQuestionIndex].Question;
   getScore.textContent = `Score: ${Quiz_Score} / 3`;
+  
 }
