@@ -48,7 +48,7 @@ export function displayQuestion() {
         console.log("correct");
         Quiz_Score++;
         btn.style.backgroundColor = "#00a608";
-        getScore.textContent = `Score: ${Quiz_Score}`;
+        getScore.textContent = `Score: ${Quiz_Score} / 3`;
         setTimeout(() => {
           UpdateQuestion();
         }, 2000);
@@ -98,5 +98,5 @@ function resetQuiz() {
   });
 
   getQuestion.innerHTML = Quiz_Questions[currentQuestionIndex].Question;
-  getScore.textContent = `Score: ${Quiz_Score}`;
+  getScore.textContent = `Score: ${Quiz_Score} / 3`;
 }
