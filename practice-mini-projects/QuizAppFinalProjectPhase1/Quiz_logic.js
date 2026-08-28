@@ -38,16 +38,20 @@ const getResetBtn = document.querySelector("#resetbtn");
 
 export function displayQuestion() {
   //   console.log(Quiz_Questions);
+
+  //eto is para sa question
   getQuestion.textContent = Quiz_Questions[currentQuestionIndex].Question;
   getButtons.forEach((btn, index) => {
+    //dito naman is sineset nia ung button para sa pag pipilian
     btn.innerHTML = Quiz_Questions[currentQuestionIndex].Options[index];
     btn.addEventListener("click", (event) => {
-      if (
-        event.target.textContent === Quiz_Questions[currentQuestionIndex].Answer
-      ) {
+      if (event.target.textContent === Quiz_Questions[currentQuestionIndex].Answer ) {
         console.log("correct");
         Quiz_Score++;
         btn.style.backgroundColor = "#00a608";
+        getButtons.forEach((btn,index)=>{
+          btn.disabled = true;
+        })
         getScore.textContent = `Score: ${Quiz_Score} / 3`;
         setTimeout(() => {
           UpdateQuestion();
@@ -56,10 +60,21 @@ export function displayQuestion() {
         btn.style.backgroundColor = "red";
         console.log("Wrong Answer!!");
         btn.classList.add("shake");
-
+      
+       // dito is mag papakita ung tamang answer pag wrong pinili mo 
+         getButtons.forEach((btn,index)=>{
+          if (btn.textContent === Quiz_Questions[currentQuestionIndex].Answer) {
+            btn.style.backgroundColor = "#00a608";
+             btn.disabled = true;
+          }
+             btn.disabled = true;
+         })
+          
         setTimeout(() => {
+         
+          UpdateQuestion() ;
           btn.style.backgroundColor = "#1e3c72";
-        }, 300);
+        }, 3000);
       }
     });
   });
@@ -81,6 +96,7 @@ function UpdateQuestion() {
   } else {
     getQuestion.textContent = Quiz_Questions[currentQuestionIndex].Question;
     getButtons.forEach((btn, index) => {
+      btn.disabled = false;
       btn.style.backgroundColor = "#1e3c72";
       btn.innerHTML = Quiz_Questions[currentQuestionIndex].Options[index];
     });
