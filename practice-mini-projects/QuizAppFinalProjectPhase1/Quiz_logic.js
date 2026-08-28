@@ -1,3 +1,4 @@
+
 let currentQuestionIndex = 0;
 let Quiz_Score = 0;
 
@@ -35,6 +36,8 @@ const getQuestion = document.querySelector(".question");
 const getButtons = document.querySelectorAll(".options button");
 const getScore = document.getElementById("score");
 const getResetBtn = document.querySelector("#resetbtn");
+const getClosemodalBtn = document.querySelector(".modal-close");
+const getpopupmodal = document.querySelector(".modal-overlay");
 
 export function displayQuestion() {
   //   console.log(Quiz_Questions);
@@ -69,12 +72,14 @@ export function displayQuestion() {
           }
              btn.disabled = true;
          })
-          
+        if(currentQuestionIndex >= questionlenght){
+          console.log("testtttttttttt")
+        }
         setTimeout(() => {
          
           UpdateQuestion() ;
           btn.style.backgroundColor = "#1e3c72";
-        }, 3000);
+        }, 2000);
       }
     });
   });
@@ -90,6 +95,7 @@ function UpdateQuestion() {
   currentQuestionIndex++;
   if (currentQuestionIndex >= questionlenght) {
     console.log("your quiz is finish");
+    
     getButtons.forEach((btn, index) => {
       btn.disabled = true;
     });
@@ -116,4 +122,13 @@ function resetQuiz() {
   getQuestion.innerHTML = Quiz_Questions[currentQuestionIndex].Question;
   getScore.textContent = `Score: ${Quiz_Score} / 3`;
   
+}
+
+getClosemodalBtn.addEventListener("click", ()=>{
+  console.log("click");
+getpopupmodal.style.display = "none";
+})
+
+function showmodal(){
+  getpopupmodal.style.display = "flex";
 }
