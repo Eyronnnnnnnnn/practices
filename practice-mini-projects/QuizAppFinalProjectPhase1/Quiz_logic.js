@@ -1,6 +1,7 @@
 let currentQuestionIndex = 0;
 let Quiz_Score = 0;
 
+
 const Quiz_Questions = [
   {
     id: 1,
@@ -30,13 +31,15 @@ const Quiz_Questions = [
   },
 ];
 
-
+let questionlenght = Quiz_Questions.length;
   const getQuestion = document.querySelector(".question");
   const getButtons = document.querySelectorAll(".options button");
   const getScore = document.getElementById("score");
+  const getResetBtn = document.querySelectorAll("resetbtn");
 
 export function displayQuestion() {
     
+ 
 //   console.log(Quiz_Questions);
  getQuestion.textContent = Quiz_Questions[currentQuestionIndex].Question;
  getButtons.forEach((btn , index)=>{
@@ -44,16 +47,19 @@ export function displayQuestion() {
      btn.addEventListener("click",(event)=>{
         if(event.target.textContent === Quiz_Questions[currentQuestionIndex].Answer){
             console.log("correct");
+            Quiz_Score++
             btn.style.backgroundColor = "#00a608";
         getScore.textContent = `Score: ${Quiz_Score}`;
         setTimeout(()=>{
             UpdateQuestion();
-            updatebtn();
+         
         },2000)
         }else{
              btn.style.backgroundColor = "red";
         console.log("Wrong Answer!!");
         btn.classList.add("shake");
+
+
 
         setTimeout(() => {
           btn.style.backgroundColor = "#1e3c72";
@@ -62,37 +68,44 @@ export function displayQuestion() {
      })
  })
 
+  getResetBtn.addEventListener("click", ()=>{
+    resetQuiz();
+    console.log("hello");
+  });
+
 
 }
 
 function UpdateQuestion(){
     console.log(currentQuestionIndex);
-currentQuestionIndex++
-getQuestion.textContent =  Quiz_Questions[currentQuestionIndex].Question  ;
+    currentQuestionIndex++
+    if(currentQuestionIndex >= questionlenght ){
+      console.log("your quiz is finish");
+       getButtons.forEach((btn,index)=>{
+        btn.disabled = true ;
+       })
+    }else{
+      getQuestion.textContent =  Quiz_Questions[currentQuestionIndex].Question  ;
+      getButtons.forEach((btn,index)=>{
+        btn.style.backgroundColor = "#1e3c72";
+        btn.innerHTML = Quiz_Questions[currentQuestionIndex].Options[index];
+      })
+    }
+
+
 
 }
 
-function updatebtn(){
-  getButtons.forEach((btn, index) => {
+function resetQuiz(){
+  currentQuestionIndex = 0;
+  Quiz_Score = 0 ;
+
+  getButtons.forEach((btn,index)=>{
     btn.innerHTML = Quiz_Questions[currentQuestionIndex].Options[index];
-    btn.addEventListener("click", (event) => { 
-      if (event.target.textContent === Quiz_Questions[currentQuestionIndex].Answer) {
-        console.log("Correct!!");
-        Quiz_Score++;
-        // btn.style.backgroundColor = "#00a608";
-        getScore.textContent = `Score: ${Quiz_Score}`;
-         
-      } else {
-        btn.style.backgroundColor = "red";
-        console.log("Wrong Answer!!");
-        btn.classList.add("shake");
+  })
 
-        setTimeout(() => {
-          btn.style.backgroundColor = "#1e3c72";
-        }, 300);
-      }
+  getQuestion.forEach((question)=>{
+    question.innerHTML ="hello"
+  })
 
-      // console.log(event.target.textContent);
-    });
-  });
 }
