@@ -209,7 +209,7 @@
             animation: bounceIn 0.5s ease-out;
         }
 
-        .btn-modal-cancel {
+        .btn-modal-TryAgain {
             background-color: #1b6cf8;
             width: 60px;
             height: 40px;
@@ -245,7 +245,10 @@
             </div>
         </div>
 
-        <div class="score" id="score">Score: 0 / 3</div>
+        <div class="score" id="score">
+            <h5>Previous Score : 0</h5>
+            <p>Score: 0 / 3</p> 
+        </div>
 
         <div class="resetbtn-container">
             <button id="resetbtn">RESET</button>
@@ -261,12 +264,12 @@
                 <button class="modal-close">×</button>
             </div>
             <div class="modal-body">
-                This is a sample modal content. You can customize everything about this modal using the controls on this
-                page. The changes will appear in real-time.
+                <p>Your Total Score is : </p>
+                
             </div>
 
             <div class="modal-footer">
-                <button class="btn-modal-cancel">TRY AGAIN?</button>
+                <button class="btn-modal-TryAgain">TRY AGAIN?</button>
 
             </div>
         </div>
