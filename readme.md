@@ -15,7 +15,7 @@
 - ✅ Fetch API
 - ✅ Storage (localStorage/sessionStorage)
 - ✅ Modules (import/export)
-- ⬜ Comprehensive JS Review (final test before React)
+- ⬜ Comprehensive JS Review (final test before React) (on going)
 
 **Mini-Projects Completed:**
 - 📇 Contact Card Generator — CRUD + modal edit

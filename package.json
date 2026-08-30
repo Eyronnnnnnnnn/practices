@@ -1,0 +1,24 @@
+{
+  "name": "javascript-practices",
+  "version": "1.0.0",
+  "description": "- ✅ Variables, Data Types, Operators\r - ✅ Functions, Scope\r - ✅ Loops & Conditionals\r - ✅ Arrays & Objects\r - ✅ Array Methods (map, filter, find)\r - ✅ Destructuring (basic, nested)\r - ✅ Objects & JSON (dot/bracket notation, JSON.parse/stringify)\r - ✅ DOM Manipulation\r - ✅ Sync vs Async, Callbacks\r - ✅ Promises (resolve/reject, .then/.catch, chaining)\r - ✅ Async/Await\r - ✅ Fetch API\r - ✅ Storage (localStorage/sessionStorage)\r - ✅ Modules (import/export)\r - ⬜ Comprehensive JS Review (final test before React)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eyronnnnnnnnn/practices.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Eyronnnnnnnnn/practices/issues"
+  },
+  "homepage": "https://github.com/Eyronnnnnnnnn/practices#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.3.3"
+  }
+}
