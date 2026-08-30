@@ -20,10 +20,15 @@
             count++
             console.log("Counter result : "+ count);
         }
-        return increment;
+        return increment; // this is a function reference it only referer to the
+                          // increment function but it doesnt run it
     }
 
     const Mycounter = createCounter();
+      const Mycounter = createCounter();
+        const Mycounter = createCounter();
+          const Mycounter = createCounter();
+            const Mycounter = createCounter();
 
     setTimeout(function(Mycounter){
       Mycounter();
