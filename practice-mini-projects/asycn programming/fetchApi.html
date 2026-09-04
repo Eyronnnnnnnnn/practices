@@ -10,7 +10,12 @@
 <script>
      async function jokeData(){
     try{
+      
            const response = await fetch("https://official-joke-api.appspot.com/random_joke");
+
+           if(!response.ok){
+               throw new Error();
+           }
            const data = await response.json()
            console.log(data);
            console.log(`${data.setup} - ${data.punchline}`)
