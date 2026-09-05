@@ -24,7 +24,7 @@
 - 🧠 QuizWard — Full quiz app (score tracking, restart, modal, single-attempt logic)
 
 ### Phase 2: React
-- ⬜ JSX & Components
+- ✅ JSX & Components (basics) — root element rule, className, curly braces, project setup via Vite, na-verify gumagana ang first component
 - ⬜ Props & State
 - ⬜ Event Handling
 - ⬜ Hooks (useState, useEffect, useContext, custom hooks)
