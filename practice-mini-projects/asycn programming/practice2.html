@@ -9,9 +9,29 @@
 </body>
 <script>
 
-     function saveFavorite(item){
+const testJoke = {setup:"password kaba? " , punchline : "kasi ang hirap mong makalimutan, Pero pwede din kitang palitan!!!"};
+
+        function saveFavorite(item){
+            let savejoke = localStorage.getItem("favoriteJoke");
+            let FavoriteJoke = JSON.parse(savejoke) || [];
+
         
-     }
+            FavoriteJoke.push(item);
+            localStorage.setItem("favoriteJoke",JSON.stringify(FavoriteJoke));
+        }
+
+        function getFavorite(){
+            let getjoke = localStorage.getItem("favoriteJoke");
+            let getjoketoarray = JSON.parse(getjoke) || [];
+
+            getjoketoarray.forEach(jokes => {
+                console.log(jokes);
+            });
+            return getjoketoarray;
+        }
+
+        saveFavorite(testJoke);
+        getFavorite();
 
 </script>
 </html>
