@@ -15,12 +15,13 @@
 - ✅ Fetch API
 - ✅ Storage (localStorage/sessionStorage)
 - ✅ Modules (import/export)
-- ⬜ Comprehensive JS Review (final test before React) (on going)
+- ✅ Comprehensive JS Review (final test before React) (on going)
 
 **Mini-Projects Completed:**
 - 📇 Contact Card Generator — CRUD + modal edit
 - 📊 Student Tracker — CRUD + Chart.js data visualization
 - 📖 Dictionary Lookup Tool — Fetch API + async/await + error handling + loading state
+- 🧠 QuizWard — Full quiz app (score tracking, restart, modal, single-attempt logic)
 
 ### Phase 2: React
 - ⬜ JSX & Components
