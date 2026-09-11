@@ -25,9 +25,9 @@
 
 ### Phase 2: React
 - ✅ JSX & Components (basics) — root element rule, className, curly braces, project setup via Vite, na-verify gumagana ang first component
-- ⬜ Props & State
+- ✅ Props & State
 - ⬜ Event Handling
-- ⬜ Hooks (useState, useEffect, useContext, custom hooks)
+- ⬜ Hooks (✅useState, useEffect, useContext, custom hooks)
 - ⬜ Conditional Rendering & Lists
 - ⬜ Forms & Controlled Inputs
 - ⬜ React Router
